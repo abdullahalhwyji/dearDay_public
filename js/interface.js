@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = '../Face/index.html';
     });
 
-    // Add click event listener for tech2Div [quiz]
+    // Add click event listener for tech3Div [quiz]
     tech3Div.addEventListener('click', function() {
         // Redirect to destination for tech2
         window.location.href = '../quiz/quiz.php';
