@@ -261,10 +261,14 @@ main li {
     border: 1px solid #ddd;
     border-radius: 4px;
     margin-bottom: 10px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
+ 
 
 main li:hover {
     list-style: disc;
+    background-color: #fff;
+    border-color: #86469C;
 }
 
 #question {
@@ -353,29 +357,9 @@ figure figcaption {
     width: 100%;
 }
 
-.resource {
-    display: inline-block;
-    width: 249px;
-    height: 350px;
-    vertical-align: top;
-    border-radius: 0;
-    margin: 7px 6px;
-    transform: scale(1);
-    transition-duration: 0.2s;
-    transition-property: transform;
-    transition-timing-function: ease-in-out;
-}
 
-.resource:hover{
-    transform: scale(1.05);
-}
 
-.resource p {
-    text-align: center;
-    display: block;
-    text-indent: 0;
-    font-size: 19pt;
-}
+
 
 #quiz-box {
     width: max-content;
