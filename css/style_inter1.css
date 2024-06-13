@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 :root{
     --maincolor:#86469C;
-    --secondcolor:#aed8cc;
-    --thirdcolor:#f4ab01;
+    --secondcolor:#AED8CC;
+    --thirdcolor:#AED8CC;
     --textcolor:#4A5764;
 }
 *{
@@ -82,47 +82,22 @@ header{
 #menu-bars:hover{
     color: var(--maincolor);
 }
-
-.right-icons {
-    display: flex;
-    align-items: center;
-}
-
 .right-icons .btn{
 
     padding: 1.2rem 2rem;
     font-size: 1.7rem;
-    background: var(--maincolor);
-    color: white;
+    background: transparent;
+    color: #86469C;
     text-decoration: none;
     cursor: pointer;
-    display: inline-block;
-    width: 200px; /* Set your desired width */
-    height: 50px; /* Set your desired height */
-    text-align: center;
-    line-height: 1.4; /* Adjusted to better fit the padding and font size */
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    border: 1px solid var(--maincolor);
+    border-radius: 50px;
 }
 .right-icons .btn:hover{
-    background-color: var(--secondcolor);
-    
+    background-color: var(--maincolor);
+    color:white;
 }
 
-
-.right-icons .btn {
-    width: 250px; /* Set your desired width */
-    height: 50px; /* Set your desired height */
-   
-}
-
-#moodBtn {
-    
-    width: auto; /* Allow the button to size automatically */
-    height: 50px; /* Set your desired height */
-    
-}
 /* header section ended */
 
 /* Home section started */
@@ -169,19 +144,24 @@ header{
 .home-btn{
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 2rem;      
     margin-top: 2rem;
+    border-radius: 50px;
 }
 .home-btn a{
     display: inline-block;
     padding: 1.5rem 3rem;
-    background-color: var(--maincolor);
+    background-color: transparent;
+    border: 1px solid var(--maincolor);
     font-size: 1.7rem;
-    color: white;
+    color: var(--textcolor);
     transition: 0.5s ease;
+    border-radius: 50px;
 }
 .home-btn a:hover{
     padding: 1.5rem 2.5rem;
+    background-color: var(--maincolor) !important;
+    color: white !important;
 }
 
 
@@ -191,7 +171,7 @@ header{
     border: 1px solid var(--maincolor);
 }
 .homebtnsec:hover{
-    background-color: var(--secondcolor) !important;
+    background-color: var(--maincolor) !important;
     color: white !important;
 }
 
@@ -295,7 +275,7 @@ header{
     font-size: 40px;
     font-weight: bolder;
     color: var(--maincolor);
-    border-bottom: 2px solid var(--secondcolor);
+    border-bottom: 2px solid var(--maincolor);
     width: 200px;
     margin: 0 auto;
     padding: 2rem 0;
@@ -348,9 +328,10 @@ header{
     cursor: pointer;
     font-size: 1.5rem;
     transition: 0.5s all;
+    border-radius: 50px;
 }
 .aboutbtn:hover{
-    background-color: var(--secondcolor);
+    background-color: var(--maincolor);
     color: white;
     border:none;
     padding: 1.5rem 3.5rem;
@@ -405,7 +386,7 @@ header{
 .doc-icons i{
     font-size: 2rem;
     margin: 0.5rem;
-    border: 1px solid var(--secondcolor);
+    border: 1px solid var(--maincolor);
     color: var(--maincolor);
     padding: 1rem;
     background-color: white;
@@ -414,7 +395,7 @@ header{
 }
 .doc-icons i:hover{
     background-color: white;
-    color: var(--secondcolor);
+    color: black;
     border-radius: 10px !important;
     transform: scale(1.2);
     border: 1px solid var(--maincolor);
@@ -458,12 +439,14 @@ header{
     cursor: pointer;
 }
 .doc-details i:hover{
-    color: var(--secondcolor);
+    color: black;
     transform: scale(1.2);
+    
 }
 
 .doc-poster:hover .doc-details{
     bottom: 10px;
+    color:#86469C;
 }
 .our-service{
     width: 100%;
@@ -494,6 +477,8 @@ header{
     transform: translateY(-10px);
     border-bottom: 2px solid var(--maincolor);
     background-color: #f5f5f5;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2), 
+                        0 8px 25px rgba(0, 0, 0, 0.19);
 }
 .inner-services:hover .service-icon{
     width: 100px;
@@ -567,7 +552,7 @@ header{
     transition: 1s;
 }
 .review-box:hover{
- 
+    color:#86469C;
     border-radius: 50px 0 0 0;
     
 }
@@ -585,7 +570,7 @@ header{
 }
 .review-stars i{
     font-size: 2rem;
-    color: var(--secondcolor);
+    color: var(--maincolor);
     margin: 0.2rem;
 }
 .review-box h2{
@@ -625,141 +610,6 @@ header{
 }
 
 /* Modal Styles */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.4);
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background-color: #764ABC;
-    border-radius: 20px;
-    padding: 20px;
-    width: 60%;
-    max-width: 90%;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.modal-inner-content {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-image {
-    border-radius: 50%;
-    width: 50%;
-    height: 50%;
-    margin-right: 20px;
-}
-
-.modal-text {
-    text-align: left;
-    color: white;
-}
-
-.modal-text h2, .modal-text h3 {
-    margin: 0;
-}
-
-.emoji-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-.emoji {
-    text-align: center;
-    margin: 0 10px;
-}
-
-.emoji img {
-    width: 50px;
-    height: 50px;
-}
-
-.emoji p {
-    margin: 5px 0 0;
-    color: white;
-}
-
-.emoji-container .emoji {
-    cursor: pointer; /* Make the cursor a pointer to indicate it's a button */
-}
-
-.emoji-container .emoji:hover {
-    filter: brightness(0.5); /* Darken the emoji when hovered */
-}
-
-.close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    color: white;
-    font-size: 30px;
-    cursor: pointer;
-}
-
-.close:hover {
-    color: #aaaaaa;
-}
-
-
-
-
-
-
-/* .doc-poster:hover img{
-    transform: translateY(-20px);
-}
-
-.doc-poster::after{
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(0deg, #f5f5f5 50%, transparent);
-    z-index: 1;
-    bottom: -220px;
-    left: 0;
-    transition: 0.5s;
-}
-.doc-poster:hover::after{
-    bottom: -100px;
-}
-.details{
-    color: black;
-    font-size: 25px;
-    position: absolute;
-    bottom: 10px;
-    left: 15px;
-    z-index: 2;
-}
-.doc-poster:hover .details{
-    bottom: 30px;
-} */
-
-
-
-
-
-
-
-
 @media (max-width:768px) {
 
     html{
@@ -815,12 +665,14 @@ header{
     .about-right-content h2{
         font-size: 20px;
     }
-
     
 }
 
+/* Modal Styles */
+/* Modal Styles */
+/* Modal Styles */
 .modal {
-    display: none;
+    display: flex;
     position: fixed;
     z-index: 1;
     left: 0;
@@ -828,9 +680,17 @@ header{
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.4);
+    background-color: #86469C;
     justify-content: center;
     align-items: center;
+    opacity: 0.7;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.modal.active {
+    opacity: 1;
+    visibility: visible;
 }
 
 .modal-content {
@@ -848,6 +708,18 @@ header{
     justify-content: center;
     align-items: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden; /* Ensure the pseudo-element doesn't overflow */
+}
+
+.modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the alpha value for desired darkness */
+    z-index: 1; /* Ensure the overlay is on top of the background but below the content */
 }
 
 .modal-inner-content {
@@ -855,6 +727,8 @@ header{
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    position: relative; /* Ensure content is above the overlay */
+    z-index: 2; /* Ensure content is above the overlay */
 }
 
 .modal-image {
@@ -916,7 +790,53 @@ header{
 }
 
 .close:hover {
-    color: #aaaaaa; /* Change color on hover */
+    color: white; /* Change color on hover */
 }
+
+
+
+
+
+
+
+
+/* .doc-poster:hover img{
+    transform: translateY(-20px);
+}
+
+.doc-poster::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, #f5f5f5 50%, transparent);
+    z-index: 1;
+    bottom: -220px;
+    left: 0;
+    transition: 0.5s;
+}
+.doc-poster:hover::after{
+    bottom: -100px;
+}
+.details{
+    color: black;
+    font-size: 25px;
+    position: absolute;
+    bottom: 10px;
+    left: 15px;
+    z-index: 2;
+}
+.doc-poster:hover .details{
+    bottom: 30px;
+} */
+
+
+
+
+
+
+
+
+
 
 
