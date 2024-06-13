@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Add click event listener for tech1Div [jornal]
     tech1Div.addEventListener('click', function() {
         // Redirect to destination for tech1
-        window.location.href = '../journal/journal.html';
+        window.location.href = '../journal/journal.php';
     });
 
     // Add click event listener for tech2Div [real time tracking]
@@ -100,6 +100,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Add click event listener for tech2Div [quiz]
     tech3Div.addEventListener('click', function() {
         // Redirect to destination for tech2
-        window.location.href = '../quiz/quiz.html';
+        window.location.href = '../quiz/quiz.php';
     });
 

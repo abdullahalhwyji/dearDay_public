@@ -1,3 +1,35 @@
+
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('entry-form');
+
+  form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const title = document.querySelector('.entry-title').value;
+      const content = document.querySelector('.entry-textbox').value;
+
+      if (title && content) {
+          const xhr = new XMLHttpRequest();
+          xhr.open('POST', '../php/save_entry.php', true);
+          xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+          xhr.onreadystatechange = function() {
+              if (xhr.readyState === 4 && xhr.status === 200) {
+                  // Handle response here, like updating the entries list or showing a success message
+                  console.log(xhr.responseText);
+                  // Optionally, you can refresh the entries section or clear the form here
+                  form.reset();
+              }
+          };
+
+          const params = 'title=' + encodeURIComponent(title) + '&content=' + encodeURIComponent(content);
+          xhr.send(params);
+      } else {
+          alert('Please fill in both the title and content.');
+      }
+  });
+});
+
 (function () {
   //
   // Variables
@@ -144,3 +176,6 @@
   //
   entryForm.addEventListener("submit", onEntrySubmit);
 })();
+
+
+

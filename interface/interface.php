@@ -77,7 +77,7 @@ $stmt->close();
 
             <div class="home">
                 <div class="home-left-content">
-                    <span>welcome to hospital management</span>
+                    <span>welcome to DearDay</span>
                     <h2>We take care our<br> Patients Healths</h2>
                     <p class="lorem">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                         Possimus numquam veniam porro eius, fugiat vero ut ipsum libero</p>
@@ -135,7 +135,7 @@ $stmt->close();
                     </div>
 
                 <div class="home-right-content">
-                    <img src="../img/hero2.png" alt="">
+                    <img src="../img/welcome.png" alt="">
                 </div>
             </div>
         </div>
@@ -177,18 +177,17 @@ $stmt->close();
 
             <div class="inner-main-about">
                 <div class="about-inner-content-left">
-                    <img src="../img/about1.png" alt="">
+                    <img src="../img/about5.png" alt="">
                 </div>
 
                 <div class="about-inner-content">
                     <div class="about-right-content">
-                        <h2>We're setting Standards in Research <br> what's more, Clinical Care.</h2>
-                        <p>We provide the most full medical services, so every person could have the pportunity 
-                         o receive qualitative medical help.</p>
-                        <p class="aboutsec-content">
-                            Our Clinic has grown to provide a world class facility for the treatment of tooth loss, dental cosmetics and bore advanced restorative dentistry. We are among
-                             the most qualified implant providers in the AUS with over 30 years of uality training and experience.
-                            </p>
+                    <h2>Leading the Way in Mental Health <br>Research and Care</h2>
+<p>At DearDay, we believe that taking care of your mental health is just as vital as caring for your physical health.</p>
+<p class="aboutsec-content">
+    We are dedicated to providing a comprehensive platform that empowers individuals to prioritize their mental well-being, access valuable resources, and find the support they need to lead healthier, happier lives.
+</p>
+
                             <button class="aboutbtn">Read More</button>
                     </div>
                 </div>

@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html>
+    <?php
+        session_start();
+        if (!isset($_SESSION['user_id'])) {
+         
+            header("Location: ../login.php");
+            exit();
+        }
+        ?>
 <head>
     <title>Mental Health Awareness</title>
     <link rel="stylesheet" href="/css/style_quiz.css">
@@ -7,6 +15,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
+<a href="../logout.php" class="btn" id="welcome-btn">Welcome, <span><?=$_SESSION['name'];?></span></a> 
     <div id="banner-image">
         <main>
             <section id="quiz-box">
