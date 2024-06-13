@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Add click event listener for tech2Div [real time tracking]
     tech2Div.addEventListener('click', function() {
         // Redirect to destination for tech2
-        window.location.href = '../Face/index.html';
+        window.location.href = '../Face/index.php';
     });
 
     // Add click event listener for tech3Div [quiz]

@@ -40,19 +40,36 @@ function stop() {
   const tracks = mediaStream.getTracks();
   tracks[0].stop();
 
-  alert("Count: " + data.counter.count);
+  const userData = {
+    angry: data.expression.angry / data.counter.count,
+    disgusted: data.expression.disgusted / data.counter.count,
+    fearful: data.expression.fearful / data.counter.count,
+    happy: data.expression.happy / data.counter.count,
+    neutral: data.expression.neutral / data.counter.count,
+    sad: data.expression.sad / data.counter.count,
+    surprised: data.expression.surprised / data.counter.count
+  };
 
-  const maxValue = Math.max(...Object.values(data.expression));
-  const emotion = Object.keys(data.expression).filter(
-    (item) => data.expression[item] === maxValue
-  );
-  data.emotion = emotion[0];
-
-  alert("Emotion: " + emotion[0]);
-
-  sessionStorage.setItem("Face-data", JSON.stringify(data));
-  window.location.replace("../index.html");
+  fetch('../save_face_data.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(userData),
+  })
+  .then(response => response.text())
+  .then(data => {
+    console.log('Success:', data);
+    alert('Emotion data saved successfully!');
+    // window.location.replace("../index.html");
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+    alert('Error saving emotion data.');
+  });
 }
+
+
 
 function screenResize(isScreenSmall) {
   if (isScreenSmall.matches) {
