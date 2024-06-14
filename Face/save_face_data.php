@@ -7,16 +7,15 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $data = json_decode(file_get_contents('php://input'), true);
-
+    // Retrieve data from POST
     $user_id = $_SESSION['user_id'];
-    $angry = $data['angry'];
-    $disgusted = $data['disgusted'];
-    $fearful = $data['fearful'];
-    $happy = $data['happy'];
-    $neutral = $data['neutral'];
-    $sad = $data['sad'];
-    $surprised = $data['surprised'];
+    $angry = isset($_POST['angry']) ? (float) $_POST['angry'] : 0;
+    $disgusted = isset($_POST['disgusted']) ? (float) $_POST['disgusted'] : 0;
+    $fearful = isset($_POST['fearful']) ? (float) $_POST['fearful'] : 0;
+    $happy = isset($_POST['happy']) ? (float) $_POST['happy'] : 0;
+    $neutral = isset($_POST['neutral']) ? (float) $_POST['neutral'] : 0;
+    $sad = isset($_POST['sad']) ? (float) $_POST['sad'] : 0;
+    $surprised = isset($_POST['surprised']) ? (float) $_POST['surprised'] : 0;
     $timestamp = date('Y-m-d H:i:s');
 
     // Database connection
@@ -31,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         die("Connection failed: " . $conn->connect_error);
     }
 
+    // Prepare and execute SQL query
     $sql = "INSERT INTO face_results (user_id, angry, disgusted, fearful, happy, neutral, sad, surprised, time_stamp) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -48,4 +48,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 } else {
     echo "Invalid request method.";
 }
-?>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Report</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+
+<body>
+    <nav>
+        <h1>Analysis Report</h1>
+    </nav>
+    <div class="content">
+        <!-- <main class="main-1">
+            <h2>Text Result</h2>
+            <div id="piechart"></div>
+        </main> -->
+        <main class="main-2">
+            <h2>Facial Result</h2>
+            <div id="piechart-1"></div>
+        </main>
+    </div>
+
+    <script>
+        var url = "https://cors-anywhere.herokuapp.com/https://o0uz9k85x4.execute-api.us-east-1.amazonaws.com/sentiment-final/";
+        $.getJSON(url, function (data) {
+            const obj = {
+                senti: data.Sentiment,
+                datap: data.SentimentScore.Positive,
+                datan: data.SentimentScore.Negative,
+                datam: data.SentimentScore.Mixed,
+                dataN: data.SentimentScore.Neutral,
+            };
+            sessionStorage.setItem("Text-data", JSON.stringify(obj));
+        });
+    </script>
+    <script src="./app.js"></script>
+    <script src="./app1.js"></script>
+</body>
+
+</html>

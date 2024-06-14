@@ -40,34 +40,35 @@ function stop() {
   const tracks = mediaStream.getTracks();
   tracks[0].stop();
 
-  const userData = {
-    angry: data.expression.angry / data.counter.count,
-    disgusted: data.expression.disgusted / data.counter.count,
-    fearful: data.expression.fearful / data.counter.count,
-    happy: data.expression.happy / data.counter.count,
-    neutral: data.expression.neutral / data.counter.count,
-    sad: data.expression.sad / data.counter.count,
-    surprised: data.expression.surprised / data.counter.count
-  };
+  const userData = new FormData();
+  userData.append('angry', data.expression.angry / data.counter.count);
+  userData.append('disgusted', data.expression.disgusted / data.counter.count);
+  userData.append('fearful', data.expression.fearful / data.counter.count);
+  userData.append('happy', data.expression.happy / data.counter.count);
+  userData.append('neutral', data.expression.neutral / data.counter.count);
+  userData.append('sad', data.expression.sad / data.counter.count);
+  userData.append('surprised', data.expression.surprised / data.counter.count);
+
+  console.log("Data to be sent:", userData); // Log data before sending
 
   fetch('../save_face_data.php', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(userData),
+    body: userData,
   })
   .then(response => response.text())
   .then(data => {
     console.log('Success:', data);
     alert('Emotion data saved successfully!');
-    // window.location.replace("../index.html");
+    // No window location change, keep the window open
   })
   .catch((error) => {
     console.error('Error:', error);
     alert('Error saving emotion data.');
   });
 }
+
+
+
 
 
 
