@@ -163,6 +163,20 @@ a{
   transform: rotate(180deg);
 }
 
+.barChart {
+    position: relative;
+    width: 100%; /* Adjust width as needed */
+    max-width: 600px; /* Set maximum width */
+    margin: 0 auto; /* Center the chart horizontally */
+}
+
+/* Style the canvas */
+#myBarChart {
+    width: 100%;
+    height: 300px; /* Set your desired height */
+}
+
+
         </style>
     </head>
     <body id="body-pd">
@@ -171,7 +185,7 @@ a{
                 <div>
                     <div class="nav__brand">
                         <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
-                        <a href="#" class="nav__logo">DeraDayAdmin</a>
+                        <a href="#" class="nav__logo">DearDayAdmin</a>
                     </div>
                     <div class="nav__list">
                         <a href="#" class="nav__link active">
@@ -229,7 +243,11 @@ a{
         <div class="barChart">
         <canvas id="myBarChart"></canvas>
     </div>
+    
+    <div id="map"></div>
 
+   
+    
        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
     <script src="assets/js/main.js"></script>
