@@ -7,16 +7,16 @@
                 <a href="#" class="nav__logo">DearDayAdmin</a>
             </div>
             <div class="nav__list">
-                <a class="nav__link active" onclick="loadPage('dashboard.html')">
+                <a class="nav__link active" onclick="loadPage('dashboard.php')">
                     <ion-icon name="home-outline" class="nav__icon"></ion-icon>
                     <span class="nav__name">Dashboard</span>
                 </a>
-                <a href="#" class="nav__link" onclick="loadPage('messenger.html')">
-                    <ion-icon name="chatbubbles-outline" class="nav__icon"></ion-icon>
-                    <span class="nav__name">Messenger</span>
+                <a class="nav__link" onclick="loadPage('users.php')">
+                    <ion-icon name="people-outline" class="nav__icon"></ion-icon>
+                    <span class="nav__name">Users</span>
                 </a>
 
-                <div class="nav__link collapse">
+                <div class="nav__link collapse" onclick="loadPage('users.php')">
                     <ion-icon name="folder-outline" class="nav__icon"></ion-icon>
                     <span class="nav__name">Projects</span>
 
@@ -58,3 +58,5 @@
         </a>
     </nav>
 </div>
+
+

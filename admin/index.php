@@ -19,8 +19,10 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
-    <script src="/assets/js/main.js"></script>
+    <!-- Updated Ionicons script setup -->
+    <script type="module" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.js"></script>
+
     <script>
         // Function to load HTML content into the specified container
         function loadHTML(url, containerId, callback) {
@@ -34,7 +36,7 @@
         }
 
         // Load the navbar initially and initialize menu functions
-        loadHTML('navbar.html', 'navbar-container', function() {
+        loadHTML('navbar.php', 'navbar-container', function() {
             showMenu('nav-toggle', 'navbar', 'body-pd');
             initializeMenuFunctions();
         });
@@ -45,7 +47,7 @@
         }
 
         // Load the default page content (e.g., dashboard.html)
-        loadPage('dashboard.html');
+        loadPage('dashboard.php');
 
         // Function to show/hide the menu
         function showMenu(toggleId, navbarId, bodyId) {
