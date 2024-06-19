@@ -7,7 +7,7 @@
     <!-- ===== CSS ===== -->
     <link rel="stylesheet" href="./assets/css/style.css">
     
-    <title>Admin</title>
+    <title>Dearadmin</title>
 </head>
 <body id="body-pd">
     
