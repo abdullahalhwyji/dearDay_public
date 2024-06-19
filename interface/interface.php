@@ -46,7 +46,7 @@ $stmt->close();
     <script src="https://kit.fontawesome.com/c1df782baf.js"></script>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.1.0/uicons-thin-rounded/css/uicons-thin-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
-    <link rel="stylesheet" href="../css/style_inter.css?v=1.0">
+    <link rel="stylesheet" href="../css/style_inter.css?v=<?php echo time(); ?>">
 </head>
 <body> 
     <header>
