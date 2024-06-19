@@ -37,7 +37,7 @@
               <span class="material-symbols-sharp">sentiment_satisfied </span>
               <h3>Mood Tracker</h3>
            </a>
-           <a href="#" class="active">
+           <a href="" class="active">
               <span class="material-symbols-sharp">ar_on_you </span>
               <h3>Expression Tracker</h3>
            </a>
