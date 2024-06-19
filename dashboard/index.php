@@ -11,309 +11,110 @@
 <body>
    <div class="container">
       <aside>
-           
          <div class="top">
            <div class="logo">
              <h2>DD <span class="danger">DearDay</span> </h2>
            </div>
            <div class="close" id="close_btn">
-            <span class="material-symbols-sharp">
-              close
-              </span>
+            <span class="material-symbols-sharp">close</span>
            </div>
          </div>
          <!-- end top -->
-          <div class="sidebar">
-
-            <a href="#">
-              <span class="material-symbols-sharp">grid_view </span>
-              <h3>Dashbord</h3>
+         <div class="sidebar">
+            <a href="javascript:void(0);" onclick="loadContent('dashboard.php', 'dashboard')">
+              <span class="material-symbols-sharp">grid_view</span>
+              <h3>Dashboard</h3>
            </a>
-           <a href="#" class="active">
-              <span class="material-symbols-sharp">person_outline </span>
-              <h3>custumers</h3>
+           <a href="javascript:void(0);" onclick="loadContent('customers.php', 'customers')">
+              <span class="material-symbols-sharp">person_outline</span>
+              <h3>Customers</h3>
            </a>
-           <a href="#">
-              <span class="material-symbols-sharp">insights </span>
+           <a href="javascript:void(0);" onclick="loadContent('analytics.php', 'analytics')">
+              <span class="material-symbols-sharp">insights</span>
               <h3>Analytics</h3>
            </a>
-           <a href="#">
-              <span class="material-symbols-sharp">mail_outline </span>
+           <a href="javascript:void(0);" onclick="loadContent('messages.php', 'messages')">
+              <span class="material-symbols-sharp">mail_outline</span>
               <h3>Messages</h3>
               <span class="msg_count">14</span>
            </a>
-           <a href="#">
-              <span class="material-symbols-sharp">receipt_long </span>
+           <a href="javascript:void(0);" onclick="loadContent('products.php', 'products')">
+              <span class="material-symbols-sharp">receipt_long</span>
               <h3>Products</h3>
            </a>
-           <a href="#">
-              <span class="material-symbols-sharp">report_gmailerrorred </span>
+           <a href="javascript:void(0);" onclick="loadContent('reports.php', 'reports')">
+              <span class="material-symbols-sharp">report_gmailerrorred</span>
               <h3>Reports</h3>
            </a>
-           <a href="#">
-              <span class="material-symbols-sharp">settings </span>
-              <h3>settings</h3>
+           <a href="javascript:void(0);" onclick="loadContent('settings.php', 'settings')">
+              <span class="material-symbols-sharp">settings</span>
+              <h3>Settings</h3>
            </a>
-           <a href="#">
-              <span class="material-symbols-sharp">add </span>
+           <a href="javascript:void(0);" onclick="loadContent('add_product.php', 'add-product')">
+              <span class="material-symbols-sharp">add</span>
               <h3>Add Product</h3>
            </a>
-           <a href="#">
-              <span class="material-symbols-sharp">logout </span>
-              <h3>logout</h3>
+           <a href="javascript:void(0);" onclick="loadContent('logout.php', 'logout')">
+              <span class="material-symbols-sharp">logout</span>
+              <h3>Logout</h3>
            </a>
-             
-
-
-          </div>
-
-      </aside>
-      <!-- --------------
-        end asid
-      -------------------- -->
-
-      <!-- --------------
-        start main part
-      --------------- -->
-
-      <main>
-           <h1>Dashbord</h1>
-
-           <div class="date">
-             <input type="date" >
-           </div>
-
-        <div class="insights">
-
-           <!-- start seling -->
-            <div class="sales">
-               <span class="material-symbols-sharp">trending_up</span>
-               <div class="middle">
-
-                 <div class="left">
-                   <h3>Total Sales</h3>
-                   <h1>$25,024</h1>
-                 </div>
-                  <div class="progress">
-                      <svg>
-                         <circle  r="30" cy="40" cx="40"></circle>
-                      </svg>
-                      <div class="number"><p>80%</p></div>
-                  </div>
-
-               </div>
-               <small>Last 24 Hours</small>
-            </div>
-           <!-- end seling -->
-              <!-- start expenses -->
-              <div class="expenses">
-                <span class="material-symbols-sharp">local_mall</span>
-                <div class="middle">
- 
-                  <div class="left">
-                    <h3>Total Sales</h3>
-                    <h1>$25,024</h1>
-                  </div>
-                   <div class="progress">
-                       <svg>
-                          <circle  r="30" cy="40" cx="40"></circle>
-                       </svg>
-                       <div class="number"><p>80%</p></div>
-                   </div>
- 
-                </div>
-                <small>Last 24 Hours</small>
-             </div>
-            <!-- end seling -->
-               <!-- start seling -->
-               <div class="income">
-                <span class="material-symbols-sharp">stacked_line_chart</span>
-                <div class="middle">
- 
-                  <div class="left">
-                    <h3>Total Sales</h3>
-                    <h1>$25,024</h1>
-                  </div>
-                   <div class="progress">
-                       <svg>
-                          <circle  r="30" cy="40" cx="40"></circle>
-                       </svg>
-                       <div class="number"><p>80%</p></div>
-                   </div>
- 
-                </div>
-                <small>Last 24 Hours</small>
-             </div>
-            <!-- end seling -->
-
-        </div>
-       <!-- end insights -->
-      <div class="recent_order">
-         <h2>Recent Orders</h2>
-         <table> 
-             <thead>
-              <tr>
-                <th>Product Name</th>
-                <th>Product Number</th>
-                <th>Payments</th>
-                <th>Status</th>
-              </tr>
-             </thead>
-              <tbody>
-                 <tr>
-                   <td>Mini USB</td>
-                   <td>4563</td>
-                   <td>Due</td>
-                   <td class="warning">Pending</td>
-                   <td class="primary">Details</td>
-                 </tr>
-                 <tr>
-                  <td>Mini USB</td>
-                  <td>4563</td>
-                  <td>Due</td>
-                  <td class="warning">Pending</td>
-                  <td class="primary">Details</td>
-                </tr>
-                <tr>
-                  <td>Mini USB</td>
-                  <td>4563</td>
-                  <td>Due</td>
-                  <td class="warning">Pending</td>
-                  <td class="primary">Details</td>
-                </tr>
-                <tr>
-                  <td>Mini USB</td>
-                  <td>4563</td>
-                  <td>Due</td>
-                  <td class="warning">Pending</td>
-                  <td class="primary">Details</td>
-                </tr>
-              </tbody>
-         </table>
-         <a href="#">Show All</a>
-      </div>
-
-      </main>
-      <!------------------
-         end main
-        ------------------->
-
-      <!----------------
-        start right main 
-      ---------------------->
-    <div class="right">
-
-<div class="top">
-   <button id="menu_bar">
-     <span class="material-symbols-sharp">menu</span>
-   </button>
-
-   <div class="theme-toggler">
-     <span class="material-symbols-sharp active">light_mode</span>
-     <span class="material-symbols-sharp">dark_mode</span>
-   </div>
-    <div class="profile">
-       <div class="info">
-           <p><b>Babar</b></p>
-           <p>Admin</p>
-           <small class="text-muted"></small>
-       </div>
-       <div class="profile-photo">
-         <img src="./images/profile-1.jpg" alt=""/>
-       </div>
-    </div>
-</div>
-
-  <div class="recent_updates">
-     <h2>Recent Update</h2>
-   <div class="updates">
-      <div class="update">
-         <div class="profile-photo">
-            <img src="./images/profile-4.jpg" alt=""/>
          </div>
-        <div class="message">
-           <p><b>Babar</b> Recived his order of USB</p>
-        </div>
+      </aside>
+
+      <main id="main-content">
+        <!-- Initial content of main section will be dynamically loaded -->
+      </main>
+
+      <div class="right">
+        <!-- Right section content -->
       </div>
-      <div class="update">
-        <div class="profile-photo">
-        <img src="./images/profile-3.jpg" alt=""/>
-        </div>
-       <div class="message">
-          <p><b>Ali</b> Recived his order of USB</p>
-       </div>
-     </div>
-     <div class="update">
-      <div class="profile-photo">
-         <img src="./images/profile-2.jpg" alt=""/>
-      </div>
-     <div class="message">
-        <p><b>Ramzan</b> Recived his order of USB</p>
-     </div>
-   </div>
-  </div>
-  </div>
-
-
-   <div class="sales-analytics">
-     <h2>Sales Analytics</h2>
-
-      <div class="item onlion">
-        <div class="icon">
-          <span class="material-symbols-sharp">shopping_cart</span>
-        </div>
-        <div class="right_text">
-          <div class="info">
-            <h3>Onlion Orders</h3>
-            <small class="text-muted">Last seen 2 Hours</small>
-          </div>
-          <h5 class="danger">-17%</h5>
-          <h3>3849</h3>
-        </div>
-      </div>
-      <div class="item onlion">
-        <div class="icon">
-          <span class="material-symbols-sharp">shopping_cart</span>
-        </div>
-        <div class="right_text">
-          <div class="info">
-            <h3>Onlion Orders</h3>
-            <small class="text-muted">Last seen 2 Hours</small>
-          </div>
-          <h5 class="success">-17%</h5>
-          <h3>3849</h3>
-        </div>
-      </div>
-      <div class="item onlion">
-        <div class="icon">
-          <span class="material-symbols-sharp">shopping_cart</span>
-        </div>
-        <div class="right_text">
-          <div class="info">
-            <h3>Onlion Orders</h3>
-            <small class="text-muted">Last seen 2 Hours</small>
-          </div>
-          <h5 class="danger">-17%</h5>
-          <h3>3849</h3>
-        </div>
-      </div>
-   
-  
-
-</div>
-
-      <div class="item add_product">
-            <div>
-            <span class="material-symbols-sharp">add</span>
-            </div>
-     </div>
-</div>
-
-
    </div>
 
+   <script>
+     function loadContent(url, path) {
+       fetch(url)
+         .then(response => {
+           if (!response.ok) {
+             throw new Error('Network response was not ok');
+           }
+           return response.text();
+         })
+         .then(data => {
+           document.getElementById('main-content').innerHTML = data;
+           history.pushState(null, null, path);
+         })
+         .catch(error => console.error('Error loading content:', error));
+     }
 
+     function loadInitialContent() {
+       const defaultPage = 'dashboard';
+       const pathname = window.location.pathname.replace('/', '');
+       const path = pathname || defaultPage;
+       const url = `${path}.php`;
 
-   <script src="script.js"></script>
+       fetch(url)
+         .then(response => {
+           if (!response.ok) {
+             throw new Error('Network response was not ok');
+           }
+           return response.text();
+         })
+         .then(data => {
+           document.getElementById('main-content').innerHTML = data;
+         })
+         .catch(error => {
+           console.error('Error loading initial content:', error);
+           document.getElementById('main-content').innerHTML = '<h1>Error loading page</h1>';
+         });
+     }
+
+     window.onpopstate = function(event) {
+       loadInitialContent();
+     };
+
+     document.addEventListener('DOMContentLoaded', (event) => {
+       loadInitialContent();
+     });
+   </script>
 </body>
 </html>
