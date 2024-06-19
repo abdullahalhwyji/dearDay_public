@@ -12,6 +12,7 @@
         border-radius: 20px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         transition: transform 0.3s ease-in-out;
+    
     }
     .container:hover {
         transform: translateY(-10px);
@@ -43,6 +44,11 @@
         border-radius: 20px;
         background-color: white;
         height: 530px; /* Adjust the height as needed */
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
     #f5 { 
         grid-column: 3; 
@@ -55,6 +61,7 @@
         font-family: 'Arial', sans-serif;
         font-size: 24px;
         margin-bottom: 10px;
+        color: black;
     }
     p {
         font-family: 'Arial', sans-serif;
@@ -73,21 +80,30 @@
 </head>
 <body>
 
+<?php
+$totalUsers = 100;
+$goodMentalHealth = 70;
+$badMentalHealth = 30;
+$labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+$data = [65, 59, 80, 81, 56, 55, 40];
+?>
+
 <div class="grid-container">
     <div class="container" id="f1">
         <div class="big-text">Total Users</div>
-        <div class="very-big-text">100</div>
+        <div class="very-big-text"><?php echo $totalUsers; ?></div>
     </div>
     <div class="container" id="f2">
-    <div class="big-text">Good Mental Health</div>
-    <div class="very-big-text">70</div>
+        <div class="big-text">Good Mental Health</div>
+        <div class="very-big-text"><?php echo $goodMentalHealth; ?></div>
     </div>
     <div class="container" id="f3">
-    <div class="big-text">Bad Mental Health</div>
-    <div class="very-big-text">30</div>
+        <div class="big-text">Bad Mental Health</div>
+        <div class="very-big-text"><?php echo $badMentalHealth; ?></div>
     </div>
     <div class="container" id="f4">
-        <canvas id="barChart" style="width:100%; height:100%;"></canvas>
+        <h1>Line chart for the users</h1>
+        <canvas id="myLineChart" width="400" height="400"></canvas>
     </div>
     <div class="container" id="f5">
         <img src="./assets/img/hello.png" alt="A beautiful scenery" style="width:100%; height:100%; border-radius: 20px;">
@@ -95,43 +111,29 @@
 </div>
 
 <script>
-    window.addEventListener("load", function() {
-        var ctx = document.getElementById('barChart').getContext('2d');
-        var barChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
+document.addEventListener('DOMContentLoaded', function() {
+    const ctx = document.getElementById('myLineChart').getContext('2d');
+    const myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: <?php echo json_encode($labels); ?>,
+            datasets: [{
+                label: 'Users Over Time',
+                data: <?php echo json_encode($data); ?>,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
                 }
             }
-        });
+        }
     });
+});
 </script>
 
 </body>

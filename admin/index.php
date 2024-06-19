@@ -10,12 +10,14 @@
     <title>Admin</title>
 </head>
 <body id="body-pd">
-    <!-- Navbar container -->
-    <div id="navbar-container"></div>
+    
+    <div id="navbar-container">
+        
+    </div>
 
     <!-- Content container -->
     <div id="content-container">
-        <!-- Default content or loading indicator can go here -->
+       
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

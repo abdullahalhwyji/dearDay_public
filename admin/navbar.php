@@ -1,3 +1,5 @@
+
+
 <!-- navbar.html -->
 <div class="l-navbar" id="navbar">
     <nav class="nav">
@@ -11,21 +13,21 @@
                     <ion-icon name="home-outline" class="nav__icon"></ion-icon>
                     <span class="nav__name">Dashboard</span>
                 </a>
-                <a class="nav__link" onclick="loadPage('users.php')">
+                <a  class="nav__link" onclick="loadPage('users.php')">
                     <ion-icon name="people-outline" class="nav__icon"></ion-icon>
                     <span class="nav__name">Users</span>
                 </a>
 
-                <div class="nav__link collapse" onclick="loadPage('users.php')">
-                    <ion-icon name="folder-outline" class="nav__icon"></ion-icon>
-                    <span class="nav__name">Projects</span>
+                <div class="nav__link collapse" onclick="loadPage('')">
+                    <ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon>
+                    <span class="nav__name">Analytics</span>
 
                     <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
 
                     <ul class="collapse__menu">
-                        <a href="#" class="collapse__sublink" onclick="loadPage('data.html')">Data</a>
-                        <a href="#" class="collapse__sublink" onclick="loadPage('group.html')">Group</a>
-                        <a href="#" class="collapse__sublink" onclick="loadPage('members.html')">Members</a>
+                        <a href="#" class="collapse__sublink" onclick="loadPage('data.html')">Bar Chart</a>
+                        <a href="#" class="collapse__sublink" onclick="loadPage('group.html')">Line Chart</a>
+                        <a href="#" class="collapse__sublink" onclick="loadPage('members.html')">Pie Chart</a>
                     </ul>
                 </div>
 

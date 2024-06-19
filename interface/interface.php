@@ -59,7 +59,7 @@ $stmt->close();
             <a href="#Home">Service</a>
             <a href="#Home">Gallery</a>
             <a href="#Home">Blog</a>
-            <a href="../Anaylsis/index.htm">Results</a>
+            <a href="../dashboard/index.php">Dashboard</a>
         </nav>
 
         <div class="right-icons">
