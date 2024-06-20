@@ -1,3 +1,61 @@
+<?php
+session_start();
+include '../connection.php';
+
+if (!isset($_SESSION['username'])) {
+    header("Location: ../login.php");
+    exit();
+}
+
+// Ensure user_id is set in session
+if (!isset($_SESSION['user_id'])) {
+    // Retrieve user ID based on the session username
+    $username = $_SESSION['username'];
+    $query = "SELECT user_id FROM tbl_user WHERE username = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
+    $_SESSION['user_id'] = $user['user_id'];
+    $stmt->close();
+}
+
+$user_id = $_SESSION['user_id'];
+
+$date = isset($_POST['date']) ? $_POST['date'] : date('Y-m-d');
+
+// Fetch data for the specified date
+$sql = "SELECT * FROM face_results WHERE user_id = $user_id AND DATE(time_stamp) = '$date'";
+$result = $conn->query($sql);
+
+$face_data = array();
+
+while($row = $result->fetch_assoc()) {
+    $face_data[] = $row;
+}
+
+// Prepare data for charts
+$moods = ['angry', 'disgusted', 'fearful', 'happy', 'neutral', 'sad', 'surprised'];
+$mood_counts = array_fill_keys($moods, 0);
+
+foreach ($face_data as $data) {
+    foreach ($moods as $mood) {
+        $mood_counts[$mood] += $data[$mood];
+    }
+}
+
+$total_count = array_sum($mood_counts);
+
+// Find the predominant mood
+$query = "SELECT mood FROM daily_mood WHERE user_id = ? AND DATE(time) = ? ORDER BY time DESC LIMIT 1";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("is", $user_id, $date);
+$stmt->execute();
+$result = $stmt->get_result();
+$mood1 = $result->fetch_assoc();
+$stmt->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +95,7 @@
               <span class="material-symbols-sharp">sentiment_satisfied </span>
               <h3>Mood Tracker</h3>
            </a>
-           <a href="" class="active">
+           <a href="#" class="active">
               <span class="material-symbols-sharp">ar_on_you </span>
               <h3>Expression Tracker</h3>
            </a>
@@ -60,6 +118,137 @@
 
       </aside>
 
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <main>
+           <h1>Expression Tracker</h1>
+           
+            <form method="POST" action="">
+            <div class="date">
+                <label for="date">Select Date: </label>
+                <input type="date" id="date" name="date" value="<?php echo $date; ?>">
+                <button type="submit">Update</button>
+            </div>
+            </form>
+
+            <?php if ($mood1 && $mood1['mood'] != null): ?>
+                <h3>My mood on <?php echo $date; ?> was:  <?php echo htmlspecialchars($mood1['mood']); ?></h3>
+            <?php else: ?>
+                <h3>My mood on <?php echo $date; ?> was: None</h3>
+            <?php endif; ?>
+        
+        <div class="insights">
+
+           <!-- start seling -->
+            <div class="sales">
+               <div class="middle">
+
+               <div>
+                <canvas id="donutChart"></canvas>
+               </div>
+
+               </div>
+                <small>Donut Chart</small>
+                </div>
+           <!-- end seling -->
+              <!-- start expenses -->
+              <div class="expenses">
+                <div class="middle">
+ 
+                <div>
+                    <canvas id="barChart"style="height: 250px;"></canvas>
+                </div>
+ 
+                </div>
+                <small>Bar Chart</small>
+             </div>
+            <!-- end seling -->
+        </div>
+        </main>
+
+        <script>
+            var moodCounts = <?php echo json_encode(array_values($mood_counts)); ?>;
+            var moods = <?php echo json_encode($moods); ?>;
+            var total = <?php echo $total_count; ?>;
+
+            // Bar Chart
+            var ctxBar = document.getElementById('barChart').getContext('2d');
+            var barChart = new Chart(ctxBar, {
+                type: 'bar',
+                data: {
+                    labels: moods,
+                    datasets: [{
+                        label: 'Mood Counts',
+                        data: moodCounts,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    }
+                }
+            }
+            });
+
+            // Donut Chart
+            var ctxDonut = document.getElementById('donutChart').getContext('2d');
+            var donutChart = new Chart(ctxDonut, {
+                type: 'doughnut',
+                data: {
+                    labels: moods,
+                    datasets: [{
+                        label: 'Mood Distribution',
+                        data: moodCounts,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(199, 199, 199, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(199, 199, 199, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                }
+            });
+        </script>
+                <div class="right">
+
+    <div class="top">
+        <button id="menu_bar">
+            <span class="material-symbols-sharp">menu</span>
+        </button>
+
+        <div class="theme-toggler">
+            <span class="material-symbols-sharp active">light_mode</span>
+            <span class="material-symbols-sharp">dark_mode</span>
+        </div>
+            <div class="profile">
+            <div class="info">
+                <p><b><span><?=$_SESSION['name'];?></b></p>
+                <p>User</p>
+                <small class="text-muted"></small>
+            </div>
+            <div class="profile-photo">
+                <img src="./images/profile-1.jpg" alt=""/>
+            </div>
+            </div>
+        </div>
+    </div>
       <script src="script.js"></script>
 </body>
 </html>

@@ -1,3 +1,28 @@
+<?php
+session_start();
+include '../connection.php';
+
+if (!isset($_SESSION['username'])) {
+    header("Location: ../login.php");
+    exit();
+}
+
+// Ensure user_id is set in session
+if (!isset($_SESSION['user_id'])) {
+    // Retrieve user ID based on the session username
+    $username = $_SESSION['username'];
+    $query = "SELECT user_id FROM tbl_user WHERE username = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
+    $_SESSION['user_id'] = $user['user_id'];
+    $stmt->close();
+}
+
+$user_id = $_SESSION['user_id'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -192,7 +217,113 @@
       <!----------------
         start right main 
       ---------------------->
-    
+    <div class="right">
+
+<div class="top">
+   <button id="menu_bar">
+     <span class="material-symbols-sharp">menu</span>
+   </button>
+
+   <div class="theme-toggler">
+     <span class="material-symbols-sharp active">light_mode</span>
+     <span class="material-symbols-sharp">dark_mode</span>
+   </div>
+    <div class="profile">
+       <div class="info">
+           <p><b><span><?=$_SESSION['name'];?></b></p>
+           <p>User</p>
+           <small class="text-muted"></small>
+       </div>
+       <div class="profile-photo">
+         <img src="./images/profile-1.jpg" alt=""/>
+       </div>
+    </div>
+</div>
+
+  <div class="recent_updates">
+     <h2>Recent Update</h2>
+   <div class="updates">
+      <div class="update">
+         <div class="profile-photo">
+            <img src="./images/profile-4.jpg" alt=""/>
+         </div>
+        <div class="message">
+           <p><b>Babar</b> Recived his order of USB</p>
+        </div>
+      </div>
+      <div class="update">
+        <div class="profile-photo">
+        <img src="./images/profile-3.jpg" alt=""/>
+        </div>
+       <div class="message">
+          <p><b>Ali</b> Recived his order of USB</p>
+       </div>
+     </div>
+     <div class="update">
+      <div class="profile-photo">
+         <img src="./images/profile-2.jpg" alt=""/>
+      </div>
+     <div class="message">
+        <p><b>Ramzan</b> Recived his order of USB</p>
+     </div>
+   </div>
+  </div>
+  </div>
+
+
+   <div class="sales-analytics">
+     <h2>Sales Analytics</h2>
+
+      <div class="item onlion">
+        <div class="icon">
+          <span class="material-symbols-sharp">shopping_cart</span>
+        </div>
+        <div class="right_text">
+          <div class="info">
+            <h3>Onlion Orders</h3>
+            <small class="text-muted">Last seen 2 Hours</small>
+          </div>
+          <h5 class="danger">-17%</h5>
+          <h3>3849</h3>
+        </div>
+      </div>
+      <div class="item onlion">
+        <div class="icon">
+          <span class="material-symbols-sharp">shopping_cart</span>
+        </div>
+        <div class="right_text">
+          <div class="info">
+            <h3>Onlion Orders</h3>
+            <small class="text-muted">Last seen 2 Hours</small>
+          </div>
+          <h5 class="success">-17%</h5>
+          <h3>3849</h3>
+        </div>
+      </div>
+      <div class="item onlion">
+        <div class="icon">
+          <span class="material-symbols-sharp">shopping_cart</span>
+        </div>
+        <div class="right_text">
+          <div class="info">
+            <h3>Onlion Orders</h3>
+            <small class="text-muted">Last seen 2 Hours</small>
+          </div>
+          <h5 class="danger">-17%</h5>
+          <h3>3849</h3>
+        </div>
+      </div>
+   
+  
+
+</div>
+
+      <div class="item add_product">
+            <div>
+            <span class="material-symbols-sharp">add</span>
+            </div>
+     </div>
+</div>
 
 
    </div>
