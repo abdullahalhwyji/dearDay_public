@@ -258,6 +258,7 @@ main .insights>div  span{
 main .insights > div.expenses span{
    background: var(--clr-danger);
 }
+
 main .insights > div.income span{
   background: var(--clr-success);
 }
@@ -381,6 +382,74 @@ main .recent_order a{
   margin: 1rem;
 }
 
+
+
+
+/* expression tracker css */
+.express  {
+  display: grid;
+  width: 96%;
+  gap: 1.8rem;
+  grid-template-columns: 14rem auto;
+  margin: 0 auto;
+}
+
+main .chart{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 1.6rem;
+}
+main .chart>div{
+  background-color: var(--clr-white);
+  padding: var(--card-padding);
+  border-radius: var(--card-border-radius);
+  margin-top: 1rem;
+  box-shadow: var(--box-shadow);
+  transition: all .3s ease;
+}
+
+.updt {
+  background-color: white; 
+  border-radius: 8px;
+  padding: 2px 4px;
+  color: black; 
+  border: 2px solid var(--clr-primary);
+  text-align: center;
+  display: inline-block;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.updt:hover {
+  background-color: var(--clr-primary);
+  color: white;
+}
+
+main .chart > div:hover{
+ box-shadow: none;
+}
+main .chart>div  span{
+  background: coral;
+   padding: 0.5rem;
+    border-radius: 50%;
+    color: var(--clr-white);
+    font-size: 2rem; 
+ }
+ main .chart > div .middle{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.moodday {
+  margin: -2rem 10rem 0rem 0rem;
+  text-align: right;
+}
+
+.moodday h3 {
+  font-size: 1.2rem;
+  color: var(--clr-dark);
+}
 
 /*********************
 Right Side
@@ -545,6 +614,11 @@ MEDIA QUERY
       width: 94%;
       grid-template-columns: 7rem auto 14rem;
     }
+    /* expresson css */
+    .express{
+      width: 94%;
+      grid-template-columns: 7rem auto;
+    }
     aside .sidebar h3{
       display: none;
     }
@@ -559,6 +633,10 @@ MEDIA QUERY
       display: grid;
       grid-template-columns: repeat(1,1fr);
     }
+    main .chart{
+      display: grid;
+      grid-template-columns: repeat(1,1fr);
+    }
 }
 
 /* ****************
@@ -567,6 +645,12 @@ MEDIA QUERY PHONE
 
 @media screen and (max-width:768px) {
   .container{
+    width: 100%;
+    grid-template-columns: repeat(1,1fr);
+  
+  }
+  /* expression css */
+  .express{
     width: 100%;
     grid-template-columns: repeat(1,1fr);
   
@@ -629,6 +713,13 @@ MEDIA QUERY PHONE
 
 
  main .insights{
+  display: grid;
+  grid-template-columns: repeat(1,1fr);
+  gap: 1.6rem;
+  padding: 40px;
+ }
+ /* expression css */
+ main .chart{
   display: grid;
   grid-template-columns: repeat(1,1fr);
   gap: 1.6rem;

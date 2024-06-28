@@ -23,7 +23,20 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-$date = isset($_POST['date']) ? $_POST['date'] : date('Y-m-d');
+// Fetch distinct dates from the face_results table
+$query = "SELECT DISTINCT DATE(time_stamp) as date FROM face_results WHERE user_id = ? ORDER BY date DESC";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$dates = [];
+while ($row = $result->fetch_assoc()) {
+    $dates[] = $row['date'];
+}
+$stmt->close();
+
+$date = isset($_POST['date']) ? $_POST['date'] : (count($dates) > 0 ? $dates[0] : date('Y-m-d'));
 
 // Fetch data for the specified date
 $sql = "SELECT * FROM face_results WHERE user_id = $user_id AND DATE(time_stamp) = '$date'";
@@ -38,10 +51,17 @@ while($row = $result->fetch_assoc()) {
 // Prepare data for charts
 $moods = ['angry', 'disgusted', 'fearful', 'happy', 'neutral', 'sad', 'surprised'];
 $mood_counts = array_fill_keys($moods, 0);
+$data_count = count($face_data);
 
 foreach ($face_data as $data) {
     foreach ($moods as $mood) {
         $mood_counts[$mood] += $data[$mood];
+    }
+}
+
+if ($data_count > 0) {
+    foreach ($moods as $mood) {
+        $mood_counts[$mood] /= $data_count;
     }
 }
 
@@ -67,7 +87,7 @@ $stmt->close();
   <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
 </head>
 <body>
-   <div class="container">
+   <div class="express">
       <aside>
            
          <div class="top">
@@ -117,59 +137,68 @@ $stmt->close();
           </div>
 
       </aside>
-
+      
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <main>
+            
            <h1>Expression Tracker</h1>
            
             <form method="POST" action="">
             <div class="date">
                 <label for="date">Select Date: </label>
-                <input type="date" id="date" name="date" value="<?php echo $date; ?>">
-                <button type="submit">Update</button>
+                <select id="date" class="updt" name="date">
+                    <?php foreach ($dates as $available_date): ?>
+                        <option value="<?php echo $available_date; ?>" <?php if ($available_date == $date) echo 'selected'; ?>>
+                            <?php echo $available_date; ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+                <button type="submit" class="updt">Update</button>
             </div>
             </form>
-
-            <?php if ($mood1 && $mood1['mood'] != null): ?>
-                <h3>My mood on <?php echo $date; ?> was:  <?php echo htmlspecialchars($mood1['mood']); ?></h3>
-            <?php else: ?>
-                <h3>My mood on <?php echo $date; ?> was: None</h3>
-            <?php endif; ?>
+            <div class="moodday">
+                <?php if ($mood1 && $mood1['mood'] != null): ?>
+                    <h3>My mood on <?php echo $date; ?> was:  <?php echo htmlspecialchars($mood1['mood']); ?></h3>
+                <?php else: ?>
+                    <h3>My mood on <?php echo $date; ?> was: None</h3>
+                <?php endif; ?>
+            </div>
         
-        <div class="insights">
-
+            <div class="chart">
            <!-- start seling -->
-            <div class="sales">
-               <div class="middle">
-
-               <div>
-                <canvas id="donutChart"></canvas>
-               </div>
-
-               </div>
-                <small>Donut Chart</small>
-                </div>
+            <div >
+                <h2>Donut Chart</h2>
+                <canvas class="middle" id="donutChart"></canvas>
+                
+            </div>
            <!-- end seling -->
               <!-- start expenses -->
-              <div class="expenses">
-                <div class="middle">
- 
-                <div>
-                    <canvas id="barChart"style="height: 250px;"></canvas>
-                </div>
- 
-                </div>
-                <small>Bar Chart</small>
-             </div>
+            <div>
+                <h2>Bar Chart</h2>
+                <canvas class="middle" style="width:150px; height: 150px;" id="barChart"></canvas>
+            </div>
+            </div>
             <!-- end seling -->
-        </div>
         </main>
 
         <script>
             var moodCounts = <?php echo json_encode(array_values($mood_counts)); ?>;
             var moods = <?php echo json_encode($moods); ?>;
             var total = <?php echo $total_count; ?>;
+            function displayNoData(ctx, message) {
+                ctx.font = "20px Arial";
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.fillText(message, ctx.canvas.width / 2, ctx.canvas.height / 2);
+            }
 
+            if (!moodCounts || moodCounts.length === 0|| total === 0) {
+                var ctxBar = document.getElementById('barChart').getContext('2d');
+                displayNoData(ctxBar, "No data");
+
+                var ctxDonut = document.getElementById('donutChart').getContext('2d');
+                displayNoData(ctxDonut, "No data");
+            } else {
             // Bar Chart
             var ctxBar = document.getElementById('barChart').getContext('2d');
             var barChart = new Chart(ctxBar, {
@@ -179,7 +208,7 @@ $stmt->close();
                     datasets: [{
                         label: 'Mood Counts',
                         data: moodCounts,
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        backgroundColor: 'rgba(75, 192, 192, 1)',
                         borderColor: 'rgba(75, 192, 192, 1)',
                         borderWidth: 1
                     }]
@@ -204,13 +233,13 @@ $stmt->close();
                         label: 'Mood Distribution',
                         data: moodCounts,
                         backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)',
-                            'rgba(199, 199, 199, 0.2)'
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(199, 199, 199, 1)'
                         ],
                         borderColor: [
                             'rgba(255, 99, 132, 1)',
@@ -225,29 +254,15 @@ $stmt->close();
                     }]
                 }
             });
+        }
         </script>
-                <div class="right">
-
-    <div class="top">
-        <button id="menu_bar">
-            <span class="material-symbols-sharp">menu</span>
-        </button>
-
-        <div class="theme-toggler">
-            <span class="material-symbols-sharp active">light_mode</span>
-            <span class="material-symbols-sharp">dark_mode</span>
-        </div>
-            <div class="profile">
-            <div class="info">
-                <p><b><span><?=$_SESSION['name'];?></b></p>
-                <p>User</p>
-                <small class="text-muted"></small>
-            </div>
-            <div class="profile-photo">
-                <img src="./images/profile-1.jpg" alt=""/>
-            </div>
-            </div>
-        </div>
+            <div class="right">
+                <div class="top">
+                <button id="menu_bar">
+                    <span class="material-symbols-sharp">menu</span>
+                </button>
+                </div>
+            </div>    
     </div>
       <script src="script.js"></script>
 </body>
