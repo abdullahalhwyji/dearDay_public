@@ -407,7 +407,21 @@ main .chart>div{
   box-shadow: var(--box-shadow);
   transition: all .3s ease;
 }
-
+/* css for quiz_summary from this */
+main .chartfull{
+  display: grid;
+  grid-template-columns: repeat(1,1fr);
+  gap: 1.6rem;
+}
+main .chartfull>div{
+  background-color: var(--clr-white);
+  padding: var(--card-padding);
+  border-radius: var(--card-border-radius);
+  margin-top: 1rem;
+  box-shadow: var(--box-shadow);
+  transition: all .3s ease;
+}
+/* quiz_summary to this */
 .updt {
   background-color: white; 
   border-radius: 8px;
@@ -421,7 +435,7 @@ main .chart>div{
 }
 
 .updt:hover {
-  background-color: var(--clr-primary);
+
   color: white;
 }
 
@@ -450,6 +464,36 @@ main .chart>div  span{
   font-size: 1.2rem;
   color: var(--clr-dark);
 }
+
+main .chrt{
+  display: grid;
+  grid-template-columns: repeat(1,1fr);
+  gap: 1.6rem;
+}
+main .chrt>div{
+  background-color: var(--clr-white);
+  padding: var(--card-padding);
+  border-radius: var(--card-border-radius);
+  margin-top: 1rem;
+  box-shadow: var(--box-shadow);
+  transition: all .3s ease;
+}
+
+main .chrt > div:hover{
+  box-shadow: none;
+ }
+ main .chrt>div  span{
+   background: coral;
+    padding: 0.5rem;
+     border-radius: 50%;
+     color: var(--clr-white);
+     font-size: 2rem; 
+  }
+  main .chrt > div .middle{
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+ }
 
 /*********************
 Right Side

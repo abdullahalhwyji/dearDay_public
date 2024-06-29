@@ -62,54 +62,60 @@ form button:hover {
   </style>
 </head>
 <body>
-   <div class="container">
-      <aside>
+   <div class="express">
+   <aside>
            
-         <div class="top">
-           <div class="logo">
-             <h2><img src="../img/colored.png" alt=""> <span class="danger">DearDay</span> </h2>
+           <div class="top">
+             <div class="logo">
+               <h2><img src="../img/colored.png" alt=""> <span class="danger">DearDay</span> </h2>
+             </div>
+             <div class="close" id="close_btn">
+              <span class="material-symbols-sharp">
+                close
+                </span>
+             </div>
            </div>
-           <div class="close" id="close_btn">
-            <span class="material-symbols-sharp">
-              close
-              </span>
-           </div>
-         </div>
-         <!-- end top -->
-          <div class="sidebar">
-
-            <a href="../dashboard/index.php">
-              <span class="material-symbols-sharp">grid_view </span>
-              <h3>Your Activity</h3>
-           </a>
-           <a href="../dashboard/journal_history.php" >
-              <span class="material-symbols-sharp">library_books </span>
-              <h3>Journal History</h3>
-           </a>
-           <a href="../dashboard/mood_tracker.php">
-              <span class="material-symbols-sharp">sentiment_satisfied </span>
-              <h3>Mood Tracker</h3>
-           </a>
-           <a href="../dashboard/expression_tracker.php">
-              <span class="material-symbols-sharp">ar_on_you </span>
-              <h3>Expression Tracker</h3>
-           </a>
-           <a href="../dashboard/quiz_history.php">
-              <span class="material-symbols-sharp">abc </span>
-              <h3>Quiz History</h3>
-           </a>
-           <a href="#" class="active">
-              <span class="material-symbols-sharp">person_outline </span>
-              <h3>Profile</h3>
-           </a>
-           <a href="../interface/interface.php">
-              <span class="material-symbols-sharp">logout </span>
-              <h3>Main Menu</h3>
-           </a>
-             
-
-          </div>
-      </aside>
+           <!-- end top -->
+            <div class="sidebar">
+  
+              <a href="../dashboard/index.php">
+                <span class="material-symbols-sharp">grid_view </span>
+                <h3>Your Activity</h3>
+             </a>
+             <a href="../dashboard/journal_history.php" >
+                <span class="material-symbols-sharp">library_books </span>
+                <h3>Journal History</h3>
+             </a>
+             <a href="../dashboard/mood_tracker.php">
+                <span class="material-symbols-sharp">sentiment_satisfied </span>
+                <h3>Mood Tracker</h3>
+             </a>
+             <a href="../dashboard/expression_tracker.php">
+                <span class="material-symbols-sharp">ar_on_you </span>
+                <h3>Expression Tracker</h3>
+             </a>
+             <a href="../dashboard/quiz_history.php">
+                <span class="material-symbols-sharp">abc </span>
+                <h3>Quiz History</h3>
+             </a>
+             <a href="../dashboard/quiz_summary.php">
+                <span class="material-symbols-sharp">assignment</span>
+                <h3>Quiz Summary</h3>
+             </a>
+             <a href="../dashboard/profile.php" class="active">
+                <span class="material-symbols-sharp">person_outline </span>
+                <h3>Profile</h3>
+             </a>
+             <a href="../interface/interface.php">
+                <span class="material-symbols-sharp">logout </span>
+                <h3>Main Menu</h3>
+             </a>
+               
+  
+  
+            </div>
+  
+        </aside>
 
       <main>
    <h1>Profile Settings</h1>

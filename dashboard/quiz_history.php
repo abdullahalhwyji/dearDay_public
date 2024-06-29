@@ -71,10 +71,19 @@ foreach ($quizzes as $quiz) {
 <style>
 
 
-
 .date label {
+   width: 2;
     margin-right: 10px;
     font-weight: bold;
+}
+
+.date select{
+   width: 300px;
+   background-color: gray;
+}
+.date select:hover{
+   width: 300px;
+   
 }
 
 .updt {
@@ -93,49 +102,59 @@ foreach ($quizzes as $quiz) {
 </style>
 <body>
    <div class="express">
-      <aside>
-         <div class="top">
-           <div class="logo">
-             <h2><img src="../img/colored.png" alt=""> <span class="danger">DearDay</span> </h2>
+   <aside>
+           
+           <div class="top">
+             <div class="logo">
+               <h2><img src="../img/colored.png" alt=""> <span class="danger">DearDay</span> </h2>
+             </div>
+             <div class="close" id="close_btn">
+              <span class="material-symbols-sharp">
+                close
+                </span>
+             </div>
            </div>
-           <div class="close" id="close_btn">
-            <span class="material-symbols-sharp">
-              close
-              </span>
-           </div>
-         </div>
-         <!-- end top -->
-          <div class="sidebar">
-            <a href="../dashboard/index.php">
-              <span class="material-symbols-sharp">grid_view</span>
-              <h3>Your Activity</h3>
-           </a>
-           <a href="../dashboard/journal_history.php">
-              <span class="material-symbols-sharp">library_books</span>
-              <h3>Journal History</h3>
-           </a>
-           <a href="../dashboard/mood_tracker.php">
-              <span class="material-symbols-sharp">sentiment_satisfied</span>
-              <h3>Mood Tracker</h3>
-           </a>
-           <a href="../dashboard/expression_tracker.php">
-              <span class="material-symbols-sharp">ar_on_you</span>
-              <h3>Expression Tracker</h3>
-           </a>
-           <a href="#" class="active">
-              <span class="material-symbols-sharp">abc</span>
-              <h3>Quiz History</h3>
-           </a>
-           <a href="../dashboard/profile.php">
-              <span class="material-symbols-sharp">person_outline</span>
-              <h3>Profile</h3>
-           </a>
-           <a href="../interface/interface.php">
-              <span class="material-symbols-sharp">logout</span>
-              <h3>Main Menu</h3>
-           </a>
-          </div>
-      </aside>
+           <!-- end top -->
+            <div class="sidebar">
+  
+              <a href="../dashboard/index.php">
+                <span class="material-symbols-sharp">grid_view </span>
+                <h3>Your Activity</h3>
+             </a>
+             <a href="../dashboard/journal_history.php" >
+                <span class="material-symbols-sharp">library_books </span>
+                <h3>Journal History</h3>
+             </a>
+             <a href="../dashboard/mood_tracker.php">
+                <span class="material-symbols-sharp">sentiment_satisfied </span>
+                <h3>Mood Tracker</h3>
+             </a>
+             <a href="../dashboard/expression_tracker.php">
+                <span class="material-symbols-sharp">ar_on_you </span>
+                <h3>Expression Tracker</h3>
+             </a>
+             <a href="../dashboard/quiz_history.php" class="active">
+                <span class="material-symbols-sharp">abc </span>
+                <h3>Quiz History</h3>
+             </a>
+             <a href="../dashboard/quiz_summary.php">
+                <span class="material-symbols-sharp">assignment</span>
+                <h3>Quiz Summary</h3>
+             </a>
+             <a href="../dashboard/profile.php">
+                <span class="material-symbols-sharp">person_outline </span>
+                <h3>Profile</h3>
+             </a>
+             <a href="../interface/interface.php">
+                <span class="material-symbols-sharp">logout </span>
+                <h3>Main Menu</h3>
+             </a>
+               
+  
+  
+            </div>
+  
+        </aside>
 
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <main>
@@ -143,7 +162,7 @@ foreach ($quizzes as $quiz) {
            
             <form method="POST" action="">
             <div class="date">
-               <label for="quiz_id">Taken Quiz: </label>
+               <label for="quiz_id">Choose the Quiz ID: </label>
                   <select id="quiz_id" class="updt" name="quiz_id">
                         <?php foreach ($quizzes as $quiz): ?>
                             <option value="<?php echo $quiz['quiz_id']; ?>" <?php if ($quiz['quiz_id'] == $quiz_id) echo 'selected'; ?>>
@@ -161,13 +180,13 @@ foreach ($quizzes as $quiz) {
             <div class="chart">
             <!-- start bar chart -->
             <div>
-                <small>Bar Chart</small>
+                <h2 style="text-align: center;">Bar Chart</h2>
                 <canvas class="middle" id="barChart" style="width:150px; height:150px;"></canvas>
             </div>
             <!-- end bar chart -->
             <!-- start radar chart -->
             <div>
-                <small>Spider Chart</small>
+                <h2 style="text-align: center;">Spider Chart</h2>
                 <canvas class="middle" id="radarChart"></canvas>
             </div>
             <!-- end radar chart -->

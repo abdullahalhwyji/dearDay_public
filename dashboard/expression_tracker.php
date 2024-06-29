@@ -85,58 +85,93 @@ $stmt->close();
   <title>UI/UX</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0" />
   <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
+  <style>
+    
+
+.date label {
+   width: 2;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.date select{
+   width: 300px;
+   background-color: gray;
+}
+.date select:hover{
+   width: 300px;
+   
+}
+
+.updt {
+    padding: 5px 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+
+
+  </style>
 </head>
 <body>
    <div class="express">
-      <aside>
+   <aside>
            
-         <div class="top">
-           <div class="logo">
-             <h2><img src="../img/colored.png" alt=""> <span class="danger">DearDay</span> </h2>
+           <div class="top">
+             <div class="logo">
+               <h2><img src="../img/colored.png" alt=""> <span class="danger">DearDay</span> </h2>
+             </div>
+             <div class="close" id="close_btn">
+              <span class="material-symbols-sharp">
+                close
+                </span>
+             </div>
            </div>
-           <div class="close" id="close_btn">
-            <span class="material-symbols-sharp">
-              close
-              </span>
-           </div>
-         </div>
-         <!-- end top -->
-          <div class="sidebar">
-
-            <a href="../dashboard/index.php" >
-              <span class="material-symbols-sharp">grid_view </span>
-              <h3>Your Activity</h3>
-           </a>
-           <a href="../dashboard/journal_history.php" >
-              <span class="material-symbols-sharp">library_books </span>
-              <h3>Journal History</h3>
-           </a>
-           <a href="../dashboard/mood_tracker.php">
-              <span class="material-symbols-sharp">sentiment_satisfied </span>
-              <h3>Mood Tracker</h3>
-           </a>
-           <a href="#" class="active">
-              <span class="material-symbols-sharp">ar_on_you </span>
-              <h3>Expression Tracker</h3>
-           </a>
-           <a href="../dashboard/quiz_history.php">
-              <span class="material-symbols-sharp">abc </span>
-              <h3>Quiz History</h3>
-           </a>
-           <a href="../dashboard/profile.php">
-              <span class="material-symbols-sharp">person_outline </span>
-              <h3>Profile</h3>
-           </a>
-           <a href="../interface/interface.php">
-              <span class="material-symbols-sharp">logout </span>
-              <h3>Main Menu</h3>
-           </a>
-             
-
-
-          </div>
-
-      </aside>
+           <!-- end top -->
+            <div class="sidebar">
+  
+              <a href="../dashboard/index.php">
+                <span class="material-symbols-sharp">grid_view </span>
+                <h3>Your Activity</h3>
+             </a>
+             <a href="../dashboard/journal_history.php" >
+                <span class="material-symbols-sharp">library_books </span>
+                <h3>Journal History</h3>
+             </a>
+             <a href="../dashboard/mood_tracker.php">
+                <span class="material-symbols-sharp">sentiment_satisfied </span>
+                <h3>Mood Tracker</h3>
+             </a>
+             <a href="../dashboard/expression_tracker.php" class="active">
+                <span class="material-symbols-sharp">ar_on_you </span>
+                <h3>Expression Tracker</h3>
+             </a>
+             <a href="../dashboard/quiz_history.php">
+                <span class="material-symbols-sharp">abc </span>
+                <h3>Quiz History</h3>
+             </a>
+             <a href="../dashboard/quiz_summary.php">
+                <span class="material-symbols-sharp">assignment</span>
+                <h3>Quiz Summary</h3>
+             </a>
+             <a href="../dashboard/profile.php">
+                <span class="material-symbols-sharp">person_outline </span>
+                <h3>Profile</h3>
+             </a>
+             <a href="../interface/interface.php">
+                <span class="material-symbols-sharp">logout </span>
+                <h3>Main Menu</h3>
+             </a>
+               
+  
+  
+            </div>
+  
+        </aside>
       
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <main>
@@ -167,14 +202,14 @@ $stmt->close();
             <div class="chart">
            <!-- start seling -->
             <div >
-                <h2>Donut Chart</h2>
+                <h2 style="text-align: center;">Donut Chart</h2>
                 <canvas class="middle" id="donutChart"></canvas>
                 
             </div>
            <!-- end seling -->
               <!-- start expenses -->
             <div>
-                <h2>Bar Chart</h2>
+                <h2 style="text-align: center;">Bar Chart</h2>
                 <canvas class="middle" style="width:150px; height: 150px;" id="barChart"></canvas>
             </div>
             </div>

@@ -50,7 +50,7 @@ $user_id = $_SESSION['user_id'];
          <!-- end top -->
           <div class="sidebar">
 
-            <a href="#" class="active">
+            <a href="../dashboard/index.php" class="active">
               <span class="material-symbols-sharp">grid_view </span>
               <h3>Your Activity</h3>
            </a>
@@ -69,6 +69,10 @@ $user_id = $_SESSION['user_id'];
            <a href="../dashboard/quiz_history.php">
               <span class="material-symbols-sharp">abc </span>
               <h3>Quiz History</h3>
+           </a>
+           <a href="../dashboard/quiz_summary.php">
+              <span class="material-symbols-sharp">assignment</span>
+              <h3>Quiz Summary</h3>
            </a>
            <a href="../dashboard/profile.php">
               <span class="material-symbols-sharp">person_outline </span>

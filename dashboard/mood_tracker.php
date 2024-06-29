@@ -10,109 +10,143 @@
   <style>
   
  
-.filter-buttons {
+.date-range {
+  width: 100%;
+  display: flex;
+  justify-content: start;
   margin-bottom: 20px;
+  gap: 10px;
 }
 
-.filter-buttons button {
-  background-color: #2e3b4e;
-  color: white;
+
+.date-range button {
+  width: 20%;
+  background-color: #86469C;
+  color: #fff;
   border: none;
-  padding: 10px 20px;
-  margin-right: 10px;
-  border-radius: 5px;
+  padding: 10px 15px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 1em;
 }
 
-.filter-buttons button:hover {
-  background-color: #1e2a38;
+
+.date-range button:hover {
+  background-color: #ff7782;
 }
 
+/* Input Styles */
+.date-range input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1em;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.date-range input:focus {
+  border-color: #007bff;
+}
+
+/* Canvas Styles */
 canvas {
+  display: block;
+  width: 100%;
+  height: 400px;
+  margin-bottom: 20px;
   background-color: white;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
 }
 
-#moodChart {
-  max-width: 100%;
-  margin: 20px 0;
+#startDate, #endDate {
+  width: 20%;
 }
-
-
-#moodBarChart {
-    margin-top: 20px;
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 80%;
-    max-width: 100%;
-    margin-bottom: 20px;
-  }
-
-
 
 
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-   <div class="container">
-      <aside>
-         <div class="top">
-           <div class="logo">
-             <h2><img src="../img/colored.png" alt=""> <span class="danger">DearDay</span> </h2>
+   <div class="express">
+   <aside>
+           
+           <div class="top">
+             <div class="logo">
+               <h2><img src="../img/colored.png" alt=""> <span class="danger">DearDay</span> </h2>
+             </div>
+             <div class="close" id="close_btn">
+              <span class="material-symbols-sharp">
+                close
+                </span>
+             </div>
            </div>
-           <div class="close" id="close_btn">
-            <span class="material-symbols-sharp">close</span>
-           </div>
-         </div>
-         <!-- end top -->
-         <div class="sidebar">
-            <a href="../dashboard/index.php">
-              <span class="material-symbols-sharp">grid_view</span>
-              <h3>Your Activity</h3>
-           </a>
-           <a href="../dashboard/journal_history.php">
-              <span class="material-symbols-sharp">library_books</span>
-              <h3>Journal History</h3>
-           </a>
-           <a href="#" class="active">
-              <span class="material-symbols-sharp">sentiment_satisfied</span>
-              <h3>Mood Tracker</h3>
-           </a>
-           <a href="../dashboard/expression_tracker.php">
-              <span class="material-symbols-sharp">ar_on_you</span>
-              <h3>Expression Tracker</h3>
-           </a>
-           <a href="../dashboard/quiz_history.php">
-              <span class="material-symbols-sharp">abc</span>
-              <h3>Quiz History</h3>
-           </a>
-           <a href="../dashboard/profile.php">
-              <span class="material-symbols-sharp">person_outline</span>
-              <h3>Profile</h3>
-           </a>
-           <a href="../interface/interface.php">
-              <span class="material-symbols-sharp">logout</span>
-              <h3>Main Menu</h3>
-           </a>
-         </div>
-      </aside>
+           <!-- end top -->
+            <div class="sidebar">
+  
+              <a href="../dashboard/index.php">
+                <span class="material-symbols-sharp">grid_view </span>
+                <h3>Your Activity</h3>
+             </a>
+             <a href="../dashboard/journal_history.php" >
+                <span class="material-symbols-sharp">library_books </span>
+                <h3>Journal History</h3>
+             </a>
+             <a href="../dashboard/mood_tracker.php" class="active">
+                <span class="material-symbols-sharp">sentiment_satisfied </span>
+                <h3>Mood Tracker</h3>
+             </a>
+             <a href="../dashboard/expression_tracker.php">
+                <span class="material-symbols-sharp">ar_on_you </span>
+                <h3>Expression Tracker</h3>
+             </a>
+             <a href="../dashboard/quiz_history.php">
+                <span class="material-symbols-sharp">abc </span>
+                <h3>Quiz History</h3>
+             </a>
+             <a href="../dashboard/quiz_summary.php">
+                <span class="material-symbols-sharp">assignment</span>
+                <h3>Quiz Summary</h3>
+             </a>
+             <a href="../dashboard/profile.php">
+                <span class="material-symbols-sharp">person_outline </span>
+                <h3>Profile</h3>
+             </a>
+             <a href="../interface/interface.php">
+                <span class="material-symbols-sharp">logout </span>
+                <h3>Main Menu</h3>
+             </a>
+               
+  
+  
+            </div>
+  
+        </aside>
 
       
 
-      <main>
-      <h1>Expression Tracker</h1>
-      <div class="filter-buttons">
-        <button onclick="filterChart(1)">1 Month</button>
-        <button onclick="filterChart(2)">2 Months</button>
-        <button onclick="filterChart(3)">3 Months</button>
-      </div>
-      <canvas id="moodChart"></canvas>
-      <canvas id="moodBarChart"></canvas> <!-- New canvas for the bar chart -->
-    </main>
+        <main>
+    <h1>Expression Tracker</h1>
+  
+    <div class="date-range">
+      <input type="date" id="startDate" placeholder="Start Date">
+      <input type="date" id="endDate" placeholder="End Date">
+      <button onclick="applyDateRange()">Apply Date Range</button>
+    </div>
+    
+  
+    <div style="background-color: white; border-radius: 8px;">
+      <div class="chart"></div>
+    <h2 style="text-align: center;">Line Chart</h2>
+    <canvas id="moodChart"></canvas>
+    </div>
+   
+  
+   
+    <!-- <canvas id="moodBarChart"></canvas> -->
+   
+  </main>
 
     <script>
       
@@ -197,6 +231,8 @@ canvas {
 
       renderChart();
     </script>
+
+   
    </div>
    <script src="script.js"></script>
 </body>
