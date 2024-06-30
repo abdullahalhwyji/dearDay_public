@@ -86,41 +86,68 @@ $stmt->close();
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0" />
   <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
   <style>
-    
+    .date label {
+       width: 2;
+        margin-right: 10px;
+        font-weight: bold;
+    }
+    .date select{
+       width: 300px;
+       background-color: gray;
+    }
+    .date select:hover{
+       width: 300px;
+    }
+    .updt {
+        padding: 5px 10px;
+        margin-left: 10px;
+        cursor: pointer;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: #f9f9f9;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        
 
-.date label {
-   width: 2;
-    margin-right: 10px;
-    font-weight: bold;
-}
+        
+    }
 
-.date select{
-   width: 300px;
-   background-color: gray;
-}
-.date select:hover{
-   width: 300px;
-   
-}
-
-.updt {
-    padding: 5px 10px;
-    margin-left: 10px;
-    cursor: pointer;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-}
-
-
-
+    table, th, td {
+        border: 1px solid #ddd;
+        text-align: center;
+        font-weight: bold;
+       
+    }
+    th, td {
+        padding: 15px;
+        
+        text-align: center;
+    }
+    th {
+        background-color: rgba(75, 192, 192, 1);
+        color: white;
+    }
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    tr:hover {
+        background-color: #ddd;
+    }
+    /* Ensure the last row also has border */
+    tr:last-child td {
+        border-bottom: 1px solid #ddd;
+    }
   </style>
 </head>
 <body>
    <div class="express">
    <aside>
-           
            <div class="top">
              <div class="logo">
                <h2><img src="../img/colored.png" alt=""> <span class="danger">DearDay</span> </h2>
@@ -131,9 +158,7 @@ $stmt->close();
                 </span>
              </div>
            </div>
-           <!-- end top -->
-            <div class="sidebar">
-  
+           <div class="sidebar">
               <a href="../dashboard/index.php">
                 <span class="material-symbols-sharp">grid_view </span>
                 <h3>Your Activity</h3>
@@ -166,30 +191,23 @@ $stmt->close();
                 <span class="material-symbols-sharp">logout </span>
                 <h3>Main Menu</h3>
              </a>
-               
-  
-  
-            </div>
-  
+           </div>
         </aside>
-      
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <main>
-            
-           <h1>Expression Tracker</h1>
-           
+            <h1>Expression Tracker</h1>
             <form method="POST" action="">
-            <div class="date">
-                <label for="date">Select Date: </label>
-                <select id="date" class="updt" name="date">
-                    <?php foreach ($dates as $available_date): ?>
-                        <option value="<?php echo $available_date; ?>" <?php if ($available_date == $date) echo 'selected'; ?>>
-                            <?php echo $available_date; ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-                <button type="submit" class="updt">Update</button>
-            </div>
+                <div class="date">
+                    <label for="date">Select Date: </label>
+                    <select id="date" class="updt" name="date">
+                        <?php foreach ($dates as $available_date): ?>
+                            <option value="<?php echo $available_date; ?>" <?php if ($available_date == $date) echo 'selected'; ?>>
+                                <?php echo $available_date; ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                    <button type="submit" class="updt">Update</button>
+                </div>
             </form>
             <div class="moodday">
                 <?php if ($mood1 && $mood1['mood'] != null): ?>
@@ -198,24 +216,42 @@ $stmt->close();
                     <h3>My mood on <?php echo $date; ?> was: None</h3>
                 <?php endif; ?>
             </div>
-        
             <div class="chart">
-           <!-- start seling -->
-            <div >
-                <h2 style="text-align: center;">Donut Chart</h2>
-                <canvas class="middle" id="donutChart"></canvas>
-                
+                <div>
+                    <h2 style="text-align: center;">Donut Chart</h2>
+                    <canvas class="middle" id="donutChart"></canvas>
+                </div>
+                <div>
+                    <h2 style="text-align: center;">Bar Chart</h2>
+                    <canvas class="middle" style="width:150px; height: 150px;" id="barChart"></canvas>
+                </div>
             </div>
-           <!-- end seling -->
-              <!-- start expenses -->
             <div>
-                <h2 style="text-align: center;">Bar Chart</h2>
-                <canvas class="middle" style="width:150px; height: 150px;" id="barChart"></canvas>
+                <h2>Data Table</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            
+                            <?php foreach ($moods as $mood): ?>
+                                <th><?php echo ucfirst($mood); ?></th>
+                            <?php endforeach; ?>
+                            <th>Time Stamp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($face_data as $data): ?>
+                            <tr>
+                               
+                                <?php foreach ($moods as $mood): ?>
+                                    <td><?php echo $data[$mood]; ?></td>
+                                <?php endforeach; ?>
+                                <td><?php echo $data['time_stamp']; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
             </div>
-            </div>
-            <!-- end seling -->
         </main>
-
         <script>
             var moodCounts = <?php echo json_encode(array_values($mood_counts)); ?>;
             var moods = <?php echo json_encode($moods); ?>;
@@ -234,71 +270,71 @@ $stmt->close();
                 var ctxDonut = document.getElementById('donutChart').getContext('2d');
                 displayNoData(ctxDonut, "No data");
             } else {
-            // Bar Chart
-            var ctxBar = document.getElementById('barChart').getContext('2d');
-            var barChart = new Chart(ctxBar, {
-                type: 'bar',
-                data: {
-                    labels: moods,
-                    datasets: [{
-                        label: 'Mood Counts',
-                        data: moodCounts,
-                        backgroundColor: 'rgba(75, 192, 192, 1)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                indexAxis: 'y',
-                scales: {
-                    x: {
-                        beginAtZero: true
+                // Bar Chart
+                var ctxBar = document.getElementById('barChart').getContext('2d');
+                var barChart = new Chart(ctxBar, {
+                    type: 'bar',
+                    data: {
+                        labels: moods,
+                        datasets: [{
+                            label: 'Mood Counts',
+                            data: moodCounts,
+                            backgroundColor: 'rgba(75, 192, 192, 1)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        scales: {
+                            x: {
+                                beginAtZero: true
+                            }
+                        }
                     }
-                }
-            }
-            });
+                });
 
-            // Donut Chart
-            var ctxDonut = document.getElementById('donutChart').getContext('2d');
-            var donutChart = new Chart(ctxDonut, {
-                type: 'doughnut',
-                data: {
-                    labels: moods,
-                    datasets: [{
-                        label: 'Mood Distribution',
-                        data: moodCounts,
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)',
-                            'rgba(199, 199, 199, 1)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)',
-                            'rgba(199, 199, 199, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                }
-            });
-        }
+                // Donut Chart
+                var ctxDonut = document.getElementById('donutChart').getContext('2d');
+                var donutChart = new Chart(ctxDonut, {
+                    type: 'doughnut',
+                    data: {
+                        labels: moods,
+                        datasets: [{
+                            label: 'Mood Distribution',
+                            data: moodCounts,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)',
+                                'rgba(199, 199, 199, 1)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)',
+                                'rgba(199, 199, 199, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    }
+                });
+            }
         </script>
-            <div class="right">
-                <div class="top">
+        <div class="right">
+            <div class="top">
                 <button id="menu_bar">
                     <span class="material-symbols-sharp">menu</span>
                 </button>
-                </div>
-            </div>    
+            </div>
+        </div>    
     </div>
-      <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

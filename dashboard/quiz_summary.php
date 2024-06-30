@@ -57,6 +57,49 @@ $stmt->close();
   <title>Quiz History</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0" />
   <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
+  <style>
+    /* Add these styles to your style.css file */
+
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+table th, table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+
+
+
+  </style>
 </head>
 <body>
    <div class="express">
@@ -127,6 +170,40 @@ $stmt->close();
             </div>
             <!-- end line chart -->
             </div>
+
+            <!-- start data table -->
+            <div>
+                <h2 style="text-align: center;">Quiz Data</h2>
+                <table border="1" cellpadding="10" cellspacing="0" style="margin: 0 auto; text-align: center;">
+                    <thead>
+                        <tr>
+                            <?php
+                            if (!empty($quiz_data)) {
+                                // Print table headers
+                                foreach (array_keys($quiz_data[0]) as $header) {
+                                    echo "<th>" . htmlspecialchars($header) . "</th>";
+                                }
+                            } else {
+                                echo "<th>No data available</th>";
+                            }
+                            ?>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        // Print table rows
+                        foreach ($quiz_data as $row) {
+                            echo "<tr>";
+                            foreach ($row as $cell) {
+                                echo "<td>" . htmlspecialchars($cell) . "</td>";
+                            }
+                            echo "</tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+            <!-- end data table -->
         </main>
 
         <script>

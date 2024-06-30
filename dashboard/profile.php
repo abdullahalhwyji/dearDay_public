@@ -9,56 +9,67 @@
   <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
   <style>
    
-
-form {
-  display: flex;
-  flex-wrap: wrap; /* Allow wrapping if needed */
-  width: 100%;
-  background-color: #ffffff;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+   .profile-form {
+    
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   
+    width: 100%;
 }
 
-form h1 {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-  width: 100%; /* Ensure the heading spans the full width */
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 15px;
 }
 
-form label {
-  display: block;
-  margin-bottom: 10px;
-  flex: 1 1 100%; /* Take full width of the flex container */
+.form-group {
+    flex: 0 0 48%;
 }
 
-form input[type="text"],
-form input[type="email"],
-form input[type="password"],
-form select {
-  width: calc(50% - 10px); /* Adjust width for two inputs in a row */
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  flex: 1 1 50%; /* Equal width for both inputs */
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
-form button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 12px 20px;
-  font-size: 1rem;
-  cursor: pointer;
-  border-radius: 4px;
-  flex: 1 1 100%; /* Take full width of the flex container */
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    
 }
 
-form button:hover {
-  background-color: #0056b3;
+select{
+  width: 49%;
+
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
 
+button {
+    margin-top: 20px;
+    width: 20%;
+    background-color: #007BFF;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 15%;
+   
+}
+
+button:hover {
+    background-color: #0056b3;
+}
   </style>
 </head>
 <body>
@@ -119,34 +130,53 @@ form button:hover {
 
       <main>
    <h1>Profile Settings</h1>
-   <form action="update_profile.php" method="POST">
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" required><br><br>
+   <form action="update_profile.php" method="POST" class="profile-form">
+    <div class="form-row">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+    </div>
 
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required><br><br>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <label for="confirm_password">Repeat Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+        </div>
+    </div>
 
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required><br><br>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city">
+        </div>
+        <div class="form-group">
+            <label for="birthdate">Birthdate:</label>
+            <input type="date" id="birthdate" name="birthdate">
+        </div>
+    </div>
 
-      <label for="confirm_password">Repeat Password:</label>
-      <input type="password" id="confirm_password" name="confirm_password" required><br><br>
+    <div class="form-group">
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            
+        </select>
+        <button type="submit">Update</button>
+    </div>
 
-      <label for="city">City:</label>
-      <input type="text" id="city" name="city"><br><br>
+    
+</form>
 
-      <label for="birthdate">Birthdate:</label>
-      <input type="date" id="birthdate" name="birthdate"><br><br>
-
-      <label for="gender">Gender:</label>
-      <select id="gender" name="gender">
-         <option value="male">Male</option>
-         <option value="female">Female</option>
-         <option value="other">Other</option>
-      </select><br><br>
-
-      <button type="submit">Update</button>
-   </form>
 </main>
 
 
