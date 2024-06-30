@@ -107,23 +107,23 @@ $stmt->close();
                                         <form action="mood.php" method="post">
                                         <div class="emoji-container">
                                             <div class="emoji">
-                                                <button type="submit" name="mood" value="Very Good" ><img src="../img/VeryGood.png" alt="Very Good"></button>
+                                                <button type="submit" name="mood" value="very good" ><img src="../img/VeryGood.png" alt="Very Good"></button>
                                                 <p>Very Good</p>
                                             </div>
                                             <div class="emoji">
-                                                <button type="submit" name="mood" value="Good"><img src="../img/SlightGood.png" alt="Slightly Good"></button>
+                                                <button type="submit" name="mood" value="good"><img src="../img/SlightGood.png" alt="Slightly Good"></button>
                                                 <p>Good</p>
                                             </div>
                                             <div class="emoji">
-                                                <button type="submit" name="mood" value="Pretty Normal"><img src="../img/Normal.png" alt="Pretty Normal"></button>
+                                                <button type="submit" name="mood" value="pretty normal"><img src="../img/Normal.png" alt="Pretty Normal"></button>
                                                 <p>Pretty Normal</p>
                                             </div>
                                             <div class="emoji">
-                                                <button type="submit" name="mood" value="Bad"><img src="../img/SlightSad.png" alt="Slightly Bad"></button>
+                                                <button type="submit" name="mood" value="bad"><img src="../img/SlightSad.png" alt="Slightly Bad"></button>
                                                 <p>Bad</p>
                                             </div>
                                             <div class="emoji">
-                                                <button type="submit" name="mood" value="Very Bad"><img src="../img/verysad.png" alt="Very Bad"></button>
+                                                <button type="submit" name="mood" value="very bad"><img src="../img/verysad.png" alt="Very Bad"></button>
                                                 <p>Very Bad</p>
                                             </div>
                                         </div>

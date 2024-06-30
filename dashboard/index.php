@@ -80,7 +80,7 @@ $user_id = $_SESSION['user_id'];
            </a>
            <a href="../interface/interface.php">
               <span class="material-symbols-sharp">logout </span>
-              <h3>Main Menu</h3>
+              <h3>Go Back</h3>
            </a>
              
 
