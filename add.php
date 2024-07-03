@@ -34,7 +34,7 @@ if (isset($_POST['register'])) {
     } else {
         $password = md5($password);
 
-        $sql = "INSERT INTO `tbl_user` (`name`, `username`, `password`, `birth_date`, `city`, `gender`) VALUES ('$name', '$username', '$password', '$birth_date', '$city', '$gender')";
+        $sql = "INSERT INTO `tbl_user` (`name`, `username`, `password`, `birth_date`, `city`, `gender`, `timestamp`) VALUES ('$name', '$username', '$password', '$birth_date', '$city', '$gender', NOW())";
 
         if (mysqli_query($conn, $sql)) {
             header('location:index.php');

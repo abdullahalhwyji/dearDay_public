@@ -64,12 +64,54 @@
                         <select id="form3Example6c" class="form-control form-control-lg py-2" name="city" style="border-radius:25px ;" required>
                           <option value="" disabled selected>Select your city</option>
                           <option value="Jakarta">Jakarta</option>
-                          <option value="Surabaya">Surabaya</option>
-                          <option value="Bandung">Bandung</option>
-                          <option value="Medan">Medan</option>
-                          <option value="Semarang">Semarang</option>
-                          <option value="Makassar">Makassar</option>
-                          <option value="Yogyakarta">Yogyakarta</option>
+<option value="Surabaya">Surabaya</option>
+<option value="Bandung">Bandung</option>
+<option value="Medan">Medan</option>
+<option value="Semarang">Semarang</option>
+<option value="Makassar">Makassar</option>
+<option value="Yogyakarta">Yogyakarta</option>
+<option value="Palembang">Palembang</option>
+<option value="Denpasar">Denpasar</option>
+<option value="Pekanbaru">Pekanbaru</option>
+<option value="Banjarmasin">Banjarmasin</option>
+<option value="Batam">Batam</option>
+<option value="Malang">Malang</option>
+<option value="Tasikmalaya">Tasikmalaya</option>
+<option value="Pontianak">Pontianak</option>
+<option value="Manado">Manado</option>
+<option value="Padang">Padang</option>
+<option value="Balikpapan">Balikpapan</option>
+<option value="Samarinda">Samarinda</option>
+<option value="Cirebon">Cirebon</option>
+<option value="Mataram">Mataram</option>
+<option value="Kupang">Kupang</option>
+<option value="Jambi">Jambi</option>
+<option value="Surakarta">Surakarta</option>
+<option value="Bogor">Bogor</option>
+<option value="Tangerang">Tangerang</option>
+<option value="Depok">Depok</option>
+<option value="Bekasi">Bekasi</option>
+<option value="Banda Aceh">Banda Aceh</option>
+<option value="Ambon">Ambon</option>
+<option value="Jayapura">Jayapura</option>
+<option value="Gorontalo">Gorontalo</option>
+<option value="Tarakan">Tarakan</option>
+<option value="Palu">Palu</option>
+<option value="Kendari">Kendari</option>
+<option value="Ternate">Ternate</option>
+<option value="Sorong">Sorong</option>
+<option value="Bengkulu">Bengkulu</option>
+<option value="Tanjungpinang">Tanjungpinang</option>
+<option value="Pangkalpinang">Pangkalpinang</option>
+<option value="Serang">Serang</option>
+<option value="Bandar Lampung">Bandar Lampung</option>
+<option value="Palangka Raya">Palangka Raya</option>
+<option value="Tanjung Selor">Tanjung Selor</option>
+<option value="Mamuju">Mamuju</option>
+<option value="Manokwari">Manokwari</option>
+<option value="Kaimana">Kaimana</option>
+<option value="other">Other</option>
+
                           <!-- Add more cities as needed -->
                         </select>
                       </div>

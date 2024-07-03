@@ -16,11 +16,12 @@
   <!-- <link rel="stylesheet" href="../css/style_face.css" /> -->
    <style>
     body {
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: -100px;
   box-sizing: border-box;
-  background: #fff;
+  background: url('../img/7751672.jpg') no-repeat center center/cover;
   width: calc(100%);
+  
 }
 
 canvas {
@@ -60,6 +61,7 @@ canvas {
 /* Styles for individual divs */
 #age {
   background: #ff6b6b; /* Vibrant red */
+  display: none;
 }
 
 #emotion {
@@ -123,8 +125,7 @@ button:focus {
 </head>
 
 <body>
-  <header>Face recognition in the browser using Javascript</header>
-
+  
   <div class="container">
     <video id="video" height="500" width="500" autoplay muted></video>
   </div>

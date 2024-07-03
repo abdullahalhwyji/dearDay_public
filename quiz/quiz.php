@@ -9,7 +9,7 @@
     ?>
 <head>
     <title>Mental Health Awareness</title>
-    <link rel="stylesheet" href="/css/style_quiz.css">
+    <link rel="stylesheet" href="../css/style_quiz.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>

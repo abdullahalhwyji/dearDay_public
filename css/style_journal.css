@@ -1,10 +1,10 @@
 /* Style Guidelines
 
 :::::Colors:::::
-Primary Green-like: #006d77
-Light Gray: ##FAFAFA
-Gray: #eeeeee
-Dark: #393e46
+Primary Purple: #86469C
+Light Gray: #FAFAFA
+Gray: #EEEEEE
+Dark: #393E46
 Black: #222831
 
 :::::Available Weights:::::
@@ -33,7 +33,7 @@ body {
   font-family: "Montserrat", "Open Sans", sans-serif;
   font-weight: 400;
   font-size: 100%;
-  background-color: #fff;
+  background-color: #FAFAFA;
   color: #222831;
 }
 
@@ -45,12 +45,27 @@ button:focus {
 
 /* Headings */
 h1 {
-  font-size: 300%;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
 }
 
 .title {
-  color: #006d77;
+  color: #86469C;
   text-align: center;
+}
+
+.entries-title {
+  color: #86469C;
 }
 
 .single-entry.title {
@@ -59,41 +74,37 @@ h1 {
 }
 
 /* Paragraphs */
-.builtby-text {
-  text-align: center;
-  margin-top: 20px;
-  color: #a9a9a9;
+p {
+  line-height: 1.6;
+  margin-bottom: 1rem;
 }
 
 /* Links */
 a,
 a:visited {
-  color: #a9a9a9;
+  color: #86469C;
   text-decoration: none;
-  border-bottom: 1px solid #a9a9a9;
+  border-bottom: 1px solid #86469C;
 }
 
 a:hover {
-  border-bottom: 1px solid #006d77;
-  color: #006d77;
+  color: #86469C;
 }
-
-/* Header
------------------------------------------------------------------------------*/
-
-/* Footer
------------------------------------------------------------------------------*/
 
 /* Main
 -----------------------------------------------------------------------------*/
 .main-container {
   margin: 5% auto;
-  width: 80%;
-  max-width: 650px;
+  width: 90%;
+  max-width: 800px;
 }
 
 .input-section {
-  margin: 10% auto 0% auto;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
 }
 
 .entry-title,
@@ -101,9 +112,10 @@ a:hover {
   background-color: #fafafa;
   width: 100%;
   border: 2px solid #eeeeee;
-  padding: 20px;
+  padding: 1rem;
   border-radius: 6px;
-  font-size: 100%;
+  font-size: 1rem;
+  margin-bottom: 1rem;
 }
 
 .entry-title:focus,
@@ -112,33 +124,14 @@ a:hover {
 }
 
 .entry-title {
-  height: 60px;
+  height: 3rem;
 }
 
 .entry-textbox {
   font-family: "Open Sans", "Montserrat", sans-serif;
   font-weight: 400;
   letter-spacing: 0.0625em;
-  height: 200px;
-  display: block;
-  margin: 3% auto;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-}
-
-.entry-textbox::-webkit-input-placeholder {
-  font-weight: 300;
-}
-
-.entry-textbox::-moz-placeholder {
-  font-weight: 300;
-}
-
-.entry-textbox:-ms-input-placeholder {
-  font-weight: 300;
-}
-
-.entry-textbox::-ms-input-placeholder {
-  font-weight: 300;
+  height: 10rem;
 }
 
 .entry-textbox::placeholder {
@@ -146,87 +139,71 @@ a:hover {
 }
 
 #entries-section {
-  background-color: #006d77;
-  color: #fff;
-  padding: 30px 25px;
+  background-color: #FFFFFF;
+  color: #000;
+  padding: 2rem;
   border-radius: 8px;
-  margin-top: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
 }
 
 .entries-title {
-  font-size: 120%;
-  position: relative;
-  margin-bottom: 20px;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .date-updated {
-  font-size: 70%;
+  font-size: 0.8rem;
   font-weight: 500;
-  vertical-align: middle;
-  position: absolute;
-  right: 0;
-  top: 4px;
+  float: right;
   opacity: 0.8;
-  text-align: right;
 }
 
-.date-updated .date {
-  opacity: 1;
+.entries-list {
+  margin-top: 1rem;
 }
 
-/* Reusable Components 
------------------------------------------------------------------------------*/
+.entry {
+  background: #F5F5F5;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.entry h3 {
+  margin-bottom: 0.5rem;
+}
 
 /* Buttons */
-.primary-button {
-  font-size: 115%;
-  padding: 10px 40px;
+button.primary-button {
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
   border-radius: 4px;
-  background-color: #006d77;
+  background-color: #86469C;
   color: #fff;
   transition: opacity 0.2s;
+  border: none;
 }
 
-.primary-button:hover {
+button.primary-button:hover {
   cursor: pointer;
   opacity: 0.85;
 }
 
-.display-entry-button {
-  display: block;
-  width: 100%;
-  height: 80px;
-  margin: 15px 0px 10px 0px;
+button.dashboard-button {
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
   border-radius: 4px;
-  background-color: #fafafa;
-  opacity: 0.9;
-  transition: opacity 0.2s;
-  font-size: 100%;
-  font-weight: 500;
-  color: #393e46;
-}
-
-.display-entry-button:hover {
-  opacity: 1;
-  cursor: pointer;
-}
-
-.delete-entry-button {
-  position: relative;
-  top: -68px;
-  right: 20px;
-  padding: 10px;
-  background-color: #e94661;
+  background-color: #393E46;
   color: #fff;
-  border-radius: 4px;
-  float: right;
-  opacity: 0.8;
   transition: opacity 0.2s;
+  border: none;
+  margin-bottom: 1rem;
 }
 
-.delete-entry-button:hover {
+button.dashboard-button:hover {
   cursor: pointer;
-  opacity: 1;
+  opacity: 0.85;
 }
 
 /* Text */
@@ -250,8 +227,18 @@ a:hover {
 }
 
 
+.btn {
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  background-color: #86469C;
+  color: #fff;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
 
-
-          
-
+.btn:hover {
+  cursor: pointer;
+  opacity: 0.85;
+}
 

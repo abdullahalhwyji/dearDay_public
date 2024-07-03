@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 :root{
     --maincolor:#86469C;
-    --secondcolor:#aed8cc;
-    --thirdcolor:#f4ab01;
+    --secondcolor:#E490D0;
+    --thirdcolor:#E490D0;
     --textcolor:#4A5764;
 }
 *{
@@ -386,8 +386,10 @@ header{
     
 }
 .doc-poster img{
-    width: 100%;
-    border: 0.7rem solid var(--maincolor);
+    width: 396px; /* Set your desired width */
+    height: 500px; /* Set your desired height */
+    object-fit: cover; /* This ensures the image covers the area without distortion */
+    border: 0.7rem solid var(--maincolor); /* Retain the existing border styling */
 }
 .doc-poster:hover img{
     border-radius: 0 50px 0 0;
@@ -598,30 +600,77 @@ header{
     padding-bottom: 2rem;
     line-height: 2.5rem;
 }
-.main-footer{
-    padding: 4rem 7%;
-    background-color: var(--textcolor);
+.main-footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
 }
-.footer-inner{
+.main-footer {
+    background: #111;
+    color: #fff;
+    padding: 50px 0;
+}
+.footer-inner {
     display: flex;
-    align-items: center;
     flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
-.footer-content{
+.footer-content {
     flex: 1 1 200px;
-    text-align: center;
+    margin: 20px;
 }
-.footer-content h1{
-    color: white;
-    font-size: 25px;
+.footer-content h1 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    position: relative;
 }
-.link a{
+.footer-content h1::after {
+    content: '';
     display: block;
+    width: 50px;
+    height: 2px;
+    background: #ff6b6b;
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+}
+.footer-content .link {
+    display: flex;
+    flex-direction: column;
+}
+.footer-content .link a {
+    color: #ccc;
+    margin-bottom: 10px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+.footer-content .link a:hover {
+    color: #ff6b6b;
+}
+.footer-social {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+.footer-social a {
+    color: #ccc;
+    margin: 0 10px;
+    font-size: 20px;
+    transition: color 0.3s;
+}
+.footer-social a:hover {
+    color: #ff6b6b;
+}
+.footer-bottom {
     text-align: center;
-    color: white;
-    font-size: 1.5rem;
-    padding: 1rem;
-    margin: 0.5rem;
+    margin-top: 30px;
+    border-top: 1px solid #333;
+    padding-top: 20px;
+    font-size: 14px;
 }
 
 /* Modal Styles */
@@ -755,7 +804,9 @@ header{
 
 
 
-
+.out{
+    display: none; 
+ }
 
 
 
@@ -815,6 +866,15 @@ header{
     .about-right-content h2{
         font-size: 20px;
     }
+
+     /*DALLE= this one */
+     .right-icons .btn{
+        display: none;
+    }
+    /*DALLE= and this one */
+    .out{
+        display: block; 
+     }
 
     
 }
@@ -919,4 +979,18 @@ header{
     color: #aaaaaa; /* Change color on hover */
 }
 
+
+
+#moodBtn {
+    display: inline-block;
+    padding: 1.4rem 3rem 1.5rem 3rem;
+
+    font-size: 1.7rem;
+    color: black;
+    transition: 0.5s ease;
+    background:transparent !important;
+    
+    border: 1px solid var(--maincolor);
+    font-weight: bold;
+}
 

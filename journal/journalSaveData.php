@@ -5,6 +5,8 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
+date_default_timezone_set('Asia/Jakarta');
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $entry_title = $_POST['entry_title'];
     $entry_text = $_POST['entry_text'];

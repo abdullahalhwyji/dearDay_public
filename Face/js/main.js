@@ -58,8 +58,9 @@ function stop() {
   .then(response => response.text())
   .then(data => {
     console.log('Success:', data);
-    alert('Emotion data saved successfully!');
-    // No window location change, keep the window open
+    if (confirm('Emotion data saved successfully! Press OK to continue.')) {
+      window.location.href = '../interface/interface.php'; // Redirect to your desired URL
+    }
   })
   .catch((error) => {
     console.error('Error:', error);
