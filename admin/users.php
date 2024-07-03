@@ -3,93 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Table</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-        th {
-            background-color: #f4f4f4;
-        }
-    </style>
-</head>
-<body>
-    <h1>User Information</h1>
+
+    <!-- ===== CSS ===== -->
+    <link rel="stylesheet" href="./assets/css/style.css">
     
-    <!-- Filter Form -->
-    <form method="GET" action="">
-        <label for="gender">Filter by Gender:</label>
-        <select name="gender" id="gender">
-            <option value="">All</option>
-            <option value="Male" <?php if (isset($_GET['gender']) && $_GET['gender'] == 'Male') echo 'selected'; ?>>Male</option>
-            <option value="Female" <?php if (isset($_GET['gender']) && $_GET['gender'] == 'Female') echo 'selected'; ?>>Female</option>
-        </select>
-        <button type="submit">Filter</button>
-    </form>
+    <title>Dearadmin</title>
+</head>
+<body id="body-pd">
+    
+    <div id="navbar-container">
+    
+    </div>
 
-    <table id="userTable">
-        <thead>
-            <tr>
-                <th>User ID</th>
-                <th>Name</th>
-                <th>Username</th>
-                <th>City</th>
-                <th>Birth Date</th>
-                <th>Gender</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "dearday";
+    <!-- Content container -->
+    <div id="content-container">
+       <h1>Users</h1>
+    </div>
 
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Updated Ionicons script setup -->
+    <script type="module" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.js"></script>
 
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
+    <script>
+        // Function to load HTML content into the specified container
+        function loadHTML(url, containerId, callback) {
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById(containerId).innerHTML = data;
+                    if (callback) callback();
+                })
+                .catch(error => console.error('Error loading HTML:', error));
+        }
+
+        // Load the navbar initially and initialize menu functions
+        loadHTML('navbar.php', 'navbar-container', function() {
+            showMenu('nav-toggle', 'navbar', 'body-pd');
+            initializeMenuFunctions();
+        });
+
+        // Function to load page content dynamically
+        function loadPage(page) {
+            loadHTML(page, 'content-container');
+        }
+
+    
+
+        // Function to show/hide the menu
+        function showMenu(toggleId, navbarId, bodyId) {
+            const toggle = document.getElementById(toggleId),
+                  navbar = document.getElementById(navbarId),
+                  bodyPadding = document.getElementById(bodyId);
+
+            if (toggle && navbar) {
+                toggle.addEventListener('click', () => {
+                    navbar.classList.toggle('expander');
+                    bodyPadding.classList.toggle('body-pd');
+                });
             }
+        }
 
-            // Initialize the query
-            $sql = "SELECT user_id, name, username, birth_date, city, gender FROM tbl_user";
-            
-            // Check if a gender filter is set
-            if (isset($_GET['gender']) && $_GET['gender'] != '') {
-                $gender = $_GET['gender'];
-                $sql .= " WHERE gender = '$gender'";
+        // Function to initialize menu functions
+        function initializeMenuFunctions() {
+            const linkColor = document.querySelectorAll('.nav__link');
+            function colorLink() {
+                linkColor.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
             }
+            linkColor.forEach(l => l.addEventListener('click', colorLink));
 
-            $result = $conn->query($sql);
+            const linkCollapse = document.getElementsByClassName('collapse__link');
+            for (let i = 0; i < linkCollapse.length; i++) {
+                linkCollapse[i].addEventListener('click', function() {
+                    const collapseMenu = this.nextElementSibling;
+                    collapseMenu.classList.toggle('showCollapse');
 
-            // Check if there are results and loop through the data
-            if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>{$row['user_id']}</td>";
-                    echo "<td>{$row['name']}</td>";
-                    echo "<td>{$row['username']}</td>";
-                    echo "<td>{$row['city']}</td>";
-                    echo "<td>{$row['birth_date']}</td>";
-                    echo "<td>{$row['gender']}</td>";
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='6'>No data found</td></tr>";
+                    const rotate = collapseMenu.previousElementSibling;
+                    rotate.classList.toggle('rotate');
+                });
             }
-
-            // Close connection
-            $conn->close();
-            ?>
-        </tbody>
-    </table>
+        }
+    </script>
 </body>
 </html>
