@@ -435,7 +435,7 @@ $stmt->close();
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
                         </div>
 
                         <div class="review-text">

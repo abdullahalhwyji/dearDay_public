@@ -19,7 +19,7 @@
   margin: 0px;
   padding: -100px;
   box-sizing: border-box;
-  background: url('../img/7751672.jpg') no-repeat center center/cover;
+  background: url('../img/1234.jpg') no-repeat center center/cover;
   width: calc(100%);
   
 }
@@ -65,12 +65,12 @@ canvas {
 }
 
 #emotion {
-  background: #ffb74d; /* Bright orange */
+  background: #4E1E1A; /* Bright orange */
   margin-top: 20px; /* Adjusted margin to create space */
 }
 
 #gender {
-  background: #90caf9; /* Soft blue */
+  background: #363C18; /* Soft blue */
 }
 
 video {
@@ -95,7 +95,7 @@ button {
   outline: none;
   width: 200px;
   height: 40px;
-  background-color: #4CAF50;
+  background-color: #7A884C;
   color: white;
   border: none;
   border-radius: 5px;
@@ -134,7 +134,7 @@ button:focus {
     <div id="emotion">Emotion</div>
     <div id="gender">Gender</div>
     <div id="age">Age</div>
-    <button onclick="stop()">STOP</button>
+    <button onclick="stop()">Save Data</button>
   </div>
 
   <script src="./js/face-api.min.js"></script>
