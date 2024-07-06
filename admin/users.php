@@ -1,89 +1,186 @@
+<?php
+// Database connection parameters
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "dearDay";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Default SQL query to fetch all users
+$sql = "SELECT * FROM tbl_user WHERE 1=1";
+
+// Handle form submission
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    // Check if search parameter is set
+    if (isset($_GET['search'])) {
+        $search = $conn->real_escape_string($_GET['search']);
+        // Modify the SQL query to include search functionality
+        $sql .= " AND name LIKE '%" . $search . "%'";
+    }
+
+    // Check if gender filter parameter is set
+    if (isset($_GET['gender']) && $_GET['gender'] != 'all') {
+        $gender = $conn->real_escape_string($_GET['gender']);
+        // Modify the SQL query to include gender filter
+        $sql .= " AND gender = '" . $gender . "'";
+    }
+
+    // Check if city filter parameter is set
+    if (isset($_GET['city']) && $_GET['city'] != 'all') {
+        $city = $conn->real_escape_string($_GET['city']);
+        // Modify the SQL query to include city filter
+        $sql .= " AND city = '" . $city . "'";
+    }
+
+    // Check if timestamp filter parameter is set
+    if (isset($_GET['timestamp']) && $_GET['timestamp'] != 'all') {
+        $timestamp = $conn->real_escape_string($_GET['timestamp']);
+        // Modify the SQL query to include timestamp filter
+        $sql .= " AND timestamp = '" . $timestamp . "'";
+    }
+
+    // Sorting options based on birth date
+    $sort_options = [
+        'none' => 'None',
+        'asc' => 'Oldest to Youngest',
+        'desc' => 'Youngest to Oldest'
+    ];
+
+    // Default sorting order
+    $order_by = 'none';
+
+    // Check if sort parameter is set
+    if (isset($_GET['sort'])) {
+        $sort = $_GET['sort'];
+        if (array_key_exists($sort, $sort_options)) {
+            $order_by = $sort;
+        }
+    }
+
+    // Modify SQL query based on sorting option
+    switch ($order_by) {
+        case 'asc':
+            $sql .= " ORDER BY birth_date ASC";
+            break;
+        case 'desc':
+            $sql .= " ORDER BY birth_date DESC";
+            break;
+        default:
+            // No sorting applied
+            break;
+    }
+}
+
+// Debugging: Output the final SQL query to check correctness
+// echo "SQL Query: " . $sql; // Uncomment this line to see the SQL query
+
+// Execute SQL query
+$result = $conn->query($sql);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- ===== CSS ===== -->
-    <link rel="stylesheet" href="./assets/css/style.css">
-    
-    <title>Dearadmin</title>
+    <title style="color: #86469C;">User Management</title>
+    <style>
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #86469C;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #86469C;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #dcdcdc;
+        }
+    </style>
 </head>
-<body id="body-pd">
-    
-    <div id="navbar-container">
-    
-    </div>
+<body>
 
-    <!-- Content container -->
-    <div id="content-container">
-       <h1>Users</h1>
-    </div>
+<h2>User Management</h2>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Updated Ionicons script setup -->
-    <script type="module" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule="" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.js"></script>
+<form method="GET" action="users.php">
+    <input type="text" name="search" placeholder="Search by name" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
 
-    <script>
-        // Function to load HTML content into the specified container
-        function loadHTML(url, containerId, callback) {
-            fetch(url)
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById(containerId).innerHTML = data;
-                    if (callback) callback();
-                })
-                .catch(error => console.error('Error loading HTML:', error));
+    <select name="gender">
+        <option value="all">All Genders</option>
+        <option value="Male" <?php echo isset($_GET['gender']) && $_GET['gender'] == 'Male' ? 'selected' : ''; ?>>Male</option>
+        <option value="Female" <?php echo isset($_GET['gender']) && $_GET['gender'] == 'Female' ? 'selected' : ''; ?>>Female</option>
+        <option value="Other" <?php echo isset($_GET['gender']) && $_GET['gender'] == 'Other' ? 'selected' : ''; ?>>Other</option>
+    </select>
+
+    <select name="city">
+        <option value="all">All Cities</option>
+        <!-- Dynamically populated options will be added below -->
+        <?php
+        // SQL query to retrieve distinct cities based on current search criteria
+        $sql_cities = "SELECT DISTINCT city FROM tbl_user";
+        if (isset($_GET['search'])) {
+            $search = $conn->real_escape_string($_GET['search']);
+            $sql_cities .= " WHERE name LIKE '%" . $search . "%'";
         }
+        $result_cities = $conn->query($sql_cities);
 
-        // Load the navbar initially and initialize menu functions
-        loadHTML('navbar.php', 'navbar-container', function() {
-            showMenu('nav-toggle', 'navbar', 'body-pd');
-            initializeMenuFunctions();
-        });
-
-        // Function to load page content dynamically
-        function loadPage(page) {
-            loadHTML(page, 'content-container');
-        }
-
-    
-
-        // Function to show/hide the menu
-        function showMenu(toggleId, navbarId, bodyId) {
-            const toggle = document.getElementById(toggleId),
-                  navbar = document.getElementById(navbarId),
-                  bodyPadding = document.getElementById(bodyId);
-
-            if (toggle && navbar) {
-                toggle.addEventListener('click', () => {
-                    navbar.classList.toggle('expander');
-                    bodyPadding.classList.toggle('body-pd');
-                });
+        // Output options for cities based on search results
+        if ($result_cities->num_rows > 0) {
+            while ($row_city = $result_cities->fetch_assoc()) {
+                $selected = isset($_GET['city']) && $_GET['city'] == $row_city['city'] ? 'selected' : '';
+                echo "<option value='" . $row_city['city'] . "' " . $selected . ">" . $row_city['city'] . "</option>";
             }
         }
+        ?>
+    </select>
 
-        // Function to initialize menu functions
-        function initializeMenuFunctions() {
-            const linkColor = document.querySelectorAll('.nav__link');
-            function colorLink() {
-                linkColor.forEach(l => l.classList.remove('active'));
-                this.classList.add('active');
-            }
-            linkColor.forEach(l => l.addEventListener('click', colorLink));
-
-            const linkCollapse = document.getElementsByClassName('collapse__link');
-            for (let i = 0; i < linkCollapse.length; i++) {
-                linkCollapse[i].addEventListener('click', function() {
-                    const collapseMenu = this.nextElementSibling;
-                    collapseMenu.classList.toggle('showCollapse');
-
-                    const rotate = collapseMenu.previousElementSibling;
-                    rotate.classList.toggle('rotate');
-                });
-            }
+    <select name="sort">
+        <?php
+        // Output sorting options
+        foreach ($sort_options as $key => $value) {
+            $selected = ($key == $order_by) ? 'selected' : '';
+            echo "<option value='" . $key . "' " . $selected . ">" . $value . "</option>";
         }
-    </script>
+        ?>
+    </select>
+
+    <input type="submit" value="Apply Filters">
+</form>
+
+<?php
+// Debugging: Output received parameters to check correctness
+// echo "<pre>"; print_r($_GET); echo "</pre>"; // Uncomment this line to see received parameters
+
+// Display search results in a table
+if ($result->num_rows > 0) {
+    echo "<table><tr><th>User ID</th><th>Name</th><th>Username</th><th>Birth Date</th><th>City</th><th>Gender</th><th>Registration Date</th></tr>";
+    // Output data of each row
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr><td>" . $row["user_id"] . "</td><td>" . $row["name"] . "</td><td>" . $row["username"] . "</td><td>" . $row["birth_date"] . "</td><td>" . $row["city"] . "</td><td>" . $row["gender"] . "</td><td>" . $row["timestamp"] . "</td></tr>";
+    }
+    echo "</table>";
+} else {
+    echo "No results found";
+}
+
+// Close connection
+$conn->close();
+?>
+
 </body>
 </html>

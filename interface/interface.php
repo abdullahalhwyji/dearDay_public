@@ -49,6 +49,8 @@ $stmt->close();
     <link rel='stylesheet'
         href='https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <link rel="stylesheet" href="../css/style_inter.css?v=<?php echo time(); ?>">
+
+   
 </head>
 
 <body>
@@ -62,6 +64,8 @@ $stmt->close();
             <a href="#team">Team</a>
             <a href="#service">Services</a>
             <a href="#feedback">Reviews</a>
+            <a  href="http://127.0.0.1:5000/">ChatBot</a>
+           
             <a href="../dashboard/index.php">Dashboard</a>
             <!-- DALLE= I add this in button for loging out in responsive mode -->
             <a href="../logout.php" class="out">Logout</a>
@@ -490,10 +494,6 @@ $stmt->close();
     </div>
 
     <!-- customer review -->
-
-
-    <!-- footer -->
-
     <div class="main-footer">
         <div class="footer-inner">
             <div class="footer-content">
@@ -541,6 +541,14 @@ $stmt->close();
             </div>
         </div>
     </div>
+
+
+
+    
+
+    <!-- footer -->
+
+  
 
 
     <!-- footer ended -->

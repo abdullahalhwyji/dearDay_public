@@ -1,3 +1,150 @@
+<?php
+// Database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "dearday";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Query to get data
+$sql = "SELECT gender, COUNT(*) as count FROM tbl_user GROUP BY gender";
+$result = $conn->query($sql);
+
+// Initialize arrays to store data
+$genders = [];
+$counts = [];
+$genderCount = ['male' => 0, 'female' => 0];
+
+// Fetch data and store in arrays
+$totalCount = 0;
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        $gender = strtolower($row['gender']);  // Ensure gender is in lowercase
+        $genders[] = $gender;
+        $counts[] = $row['count'];
+        $totalCount += $row['count'];
+        $genderCount[$gender] = $row['count'];
+    }
+}
+
+// Calculate percentages
+$percentages = [];
+foreach ($counts as $count) {
+    $percentages[] = round(($count / $totalCount) * 100, 2);
+}
+
+$sql = "SELECT birth_date FROM tbl_user";
+$result2 = $conn->query($sql);
+
+$users = [];
+if ($result2->num_rows > 0) {
+    while ($row = $result2->fetch_assoc()) {
+        $users[] = $row;
+    }
+}
+
+// Function to calculate age
+function calculateAge($birthDate) {
+    $birthDate = new DateTime($birthDate);
+    $currentDate = new DateTime();
+    $age = $currentDate->diff($birthDate)->y;
+    return $age;
+}
+
+// Initialize age groups
+$ageGroups = [
+    'Children (0-12)' => 0,
+    'Teenagers (13-19)' => 0,
+    'Young Adults (20-34)' => 0,
+    'Adults (35-49)' => 0,
+    'Middle-Aged (50-64)' => 0,
+    'Seniors (65+)' => 0
+];
+
+// Group users by age
+foreach ($users as $user) {
+    $age = calculateAge($user['birth_date']);
+    if ($age >= 0 && $age <= 12) {
+        $ageGroups['Children (0-12)']++;
+    } elseif ($age >= 13 && $age <= 19) {
+        $ageGroups['Teenagers (13-19)']++;
+    } elseif ($age >= 20 && $age <= 34) {
+        $ageGroups['Young Adults (20-34)']++;
+    } elseif ($age >= 35 && $age <= 49) {
+        $ageGroups['Adults (35-49)']++;
+    } elseif ($age >= 50 && $age <= 64) {
+        $ageGroups['Middle-Aged (50-64)']++;
+    } else {
+        $ageGroups['Seniors (65+)']++;
+    }
+}
+
+
+$query = "SELECT city, COUNT(*) as user_count FROM tbl_user GROUP BY city";
+$result3 = $conn->query($query);
+
+// Check if query execution was successful
+if (!$result3) {
+    die("Query failed: " . $conn->error);
+}
+
+// Prepare arrays for Chart.js labels and data
+$labels = [];
+$data = [];
+$backgroundColors = [];
+
+while ($row = $result3->fetch_assoc()) {
+    $labels[] = $row['city'];
+    $data[] = $row['user_count'];
+    // Generate random colors for each city
+    $backgroundColors[] = 'rgba(' . rand(0, 255) . ', ' . rand(0, 255) . ', ' . rand(0, 255) . ', 1)';
+}
+
+// Query to get user count by month
+$query = "SELECT DATE_FORMAT(timestamp, '%Y-%m') as month, COUNT(*) as user_count
+          FROM tbl_user
+          GROUP BY month
+          ORDER BY month";
+$result4 = $conn->query($query);
+
+$months = [];
+$monthlyUserCounts = [];
+
+while ($row = $result4->fetch_assoc()) {
+    $dateObj = DateTime::createFromFormat('Y-m', $row['month']);
+    $formattedMonth = $dateObj->format('F Y');
+    $months[] = $formattedMonth;
+    $monthlyUserCounts[] = $row['user_count'];
+}
+
+$query = "SELECT mood, COUNT(*) as mood_count FROM daily_mood GROUP BY mood";
+$result5 = $conn->query($query);
+
+$goodMoodCount = 0;
+$badMoodCount = 0;
+
+if ($result5->num_rows > 0) {
+    while ($row = $result5->fetch_assoc()) {
+        $mood = strtolower($row['mood']);
+        if (in_array($mood, ['very good', 'good', 'pretty normal'])) {
+            $goodMoodCount += $row['mood_count'];
+        } elseif (in_array($mood, ['bad', 'very bad'])) {
+            $badMoodCount += $row['mood_count'];
+        }
+    }
+}
+
+
+// Close the database connection
+$conn->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -217,11 +364,11 @@
 }
 
 .div1 {
-    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    background: linear-gradient(135deg, #ffcc33 0%, #ff9900 100%);
 }
 
 .div2 {
-    background: linear-gradient(135deg, #ffcc33 0%, #ff9900 100%);
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
 }
 
 .div3 {
@@ -258,20 +405,24 @@
         <div class="parent">
         <div class="div1">
     <div class="info">
-        <span class="text">Users with Happy Mood</span>
-        <span class="value">90</span>
+                <?php
+                // Calculate total number of users
+                $totalUsers = array_sum($ageGroups);
+                ?>
+        <span class="text">Total Users</span>
+        <span class="value"><?php echo $totalUsers; ?></span>
     </div>
 </div>
         <div class="div2">
     <div class="info">
-        <span class="text">Users with Normal Mood</span>
-        <span class="value">150</span>
+        <span class="text">Users with Good Mood Today</span>
+        <span class="value"><?php echo $goodMoodCount; ?></span>
     </div>
 </div>
         <div class="div3">
     <div class="info">
-        <span class="text">Users with Sad Mood</span>
-        <span class="value">40</span>
+        <span class="text">Users with Bad Mood Today</span>
+        <span class="value"><?php echo $badMoodCount; ?></span>
     </div>
 </div>
             
@@ -281,7 +432,7 @@
             <div class="div5">
                 <canvas id="genderChart" width="200" height="200"></canvas>
             </div>
-            <div class="div6" id="clickableDiv" title="Click for more details">
+            <div class="div6">
     <canvas id="monthlyUsersChart" width="400" height="200"></canvas>
 </div>
             <div class="div7">
@@ -295,9 +446,7 @@
 
     <script>
 
-document.getElementById("clickableDiv").addEventListener("click", function() {
-        window.location.href = "users.php";
-    });
+
         function loadHTML(url, containerId, callback) {
             fetch(url)
                 .then(response => response.text())
@@ -350,27 +499,23 @@ document.getElementById("clickableDiv").addEventListener("click", function() {
             }
         }
 
-        <?php
-        $malePercentage = 60;
-        $femalePercentage = 40;
-        ?>
 
         function createChart() {
             const ctx = document.getElementById('genderChart').getContext('2d');
             const genderChart = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Male', 'Female'],
+                    labels: <?php echo json_encode($genders); ?>,
                     datasets: [{
                         label: 'Gender Distribution',
-                        data: [<?php echo $malePercentage; ?>, <?php echo $femalePercentage; ?>],
+                        data: <?php echo json_encode($counts); ?>,
                         backgroundColor: [
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 99, 132, 1)'
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)'
                         ],
                         borderColor: [
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 99, 132, 1)'
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)'
                         ],
                         borderWidth: 1
                     }]
@@ -380,8 +525,18 @@ document.getElementById("clickableDiv").addEventListener("click", function() {
                     maintainAspectRatio: false,
                     legend: {
                         position: 'bottom'
-                    }
-                }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                var index = context.dataIndex;
+                                var label = context.label || '';
+                                var value = context.raw;
+                                var percentage = <?php echo json_encode($percentages); ?>[index];
+                                return label + ': ' + value + ' (' + percentage + '%)';
+                            }
+                        }
+                }}
             });
         }
 
@@ -390,10 +545,17 @@ document.getElementById("clickableDiv").addEventListener("click", function() {
             const ageChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['0-18', '19-35', '36-50', '51+'],
+                    labels: ['Children (0-12)', 'Teenagers (13-19)', 'Young Adults (20-34)', 'Adults (35-49)', 'Middle-Aged (50-64)', 'Seniors (65+)'],
                     datasets: [{
                         label: 'Age Distribution',
-                        data: [12, 19, 3, 5],
+                        data: [                        <?php
+                        echo $ageGroups['Children (0-12)'] . ', ';
+                        echo $ageGroups['Teenagers (13-19)'] . ', ';
+                        echo $ageGroups['Young Adults (20-34)'] . ', ';
+                        echo $ageGroups['Adults (35-49)'] . ', ';
+                        echo $ageGroups['Middle-Aged (50-64)'] . ', ';
+                        echo $ageGroups['Seniors (65+)'];
+                        ?>],
                         backgroundColor: 'rgba(75, 192, 192, 1)',
                         borderColor: 'rgba(75, 192, 192, 1)',
                         borderWidth: 1
@@ -421,10 +583,10 @@ document.getElementById("clickableDiv").addEventListener("click", function() {
         const monthlyUsersChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                labels: <?php echo json_encode($months); ?>,
                 datasets: [{
                     label: 'Number of Users',
-                    data: [30, 20, 10, 40, 50, 20, 10, 70, 80, 40, 50, 120],  // Replace with dynamic data if needed
+                    data: <?php echo json_encode($monthlyUserCounts); ?>,
                     backgroundColor: 'rgba(153, 102, 255, 0.2)',
                     borderColor: 'rgba(153, 102, 255, 1)',
                     borderWidth: 1,
@@ -463,22 +625,12 @@ document.getElementById("clickableDiv").addEventListener("click", function() {
         const cityUsersChart = new Chart(ctx, {
             type: 'bar',
 data: {
-    labels: [
-        'Jakarta', 'Surabaya', 'Bandung', 'Medan', 'Semarang', 'Makassar', 'Yogyakarta'
-    ],
+    labels: <?php echo json_encode($labels); ?>,
     datasets: [{
         label: 'Number of Users by City',
-        data: [120, 90, 40, 70, 60, 80, 100],  // Only the first 7 data points
-        backgroundColor: [
-            'rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 
-            'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)', 
-            'rgba(199, 199, 199, 1)'
-        ],
-        borderColor: [
-            'rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 
-            'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)', 
-            'rgba(199, 199, 199, 1)'
-        ],
+        data: <?php echo json_encode($data); ?>,
+        backgroundColor: <?php echo json_encode($backgroundColors); ?>,
+        borderColor: <?php echo json_encode($backgroundColors); ?>,
         borderWidth: 1
     }]
 },

@@ -13,9 +13,9 @@
                     <ion-icon name="home-outline" class="nav__icon"></ion-icon>
                     <span class="nav__name">Dashboard</span>
                 </a>
-                <a href="users.php" class="nav__link" onclick="loadPage('users.php')">
+                <a class="nav__link" href="javascript:void(0);" onclick="loadPage('users.php')">
                     <ion-icon name="people-outline" class="nav__icon"></ion-icon>
-                    <span class="nav__name">Users</span>
+                    <span class="nav__name">Users Details</span>
                 </a>
 
               
