@@ -473,7 +473,7 @@ $stmt->close();
                         </div>
 
                         <div class="review-text">
-                            <p>Fantastic service! Everything was handled efficiently and professionally. The quality exceeded my expectations, and I am extremely satisfied. Will definitely use again!</p>
+                            <p>It's a great system. I'm able to keep track of my mental condition and figure out whether I have a problem. We can also see the visuals quite nicely.</p>
                         </div>
 
                     </div>

@@ -129,16 +129,16 @@ canvas {
         <main>
     <h1>Expression Tracker</h1>
   
-    <div class="date-range">
+    <!-- <div class="date-range">
       <input type="date" id="startDate" placeholder="Start Date">
       <input type="date" id="endDate" placeholder="End Date">
       <button onclick="applyDateRange()">Apply Date Range</button>
     </div>
-    
+     -->
   
     <div style="background-color: white; border-radius: 8px;">
       <div class="chart"></div>
-    <h2 style="text-align: center;">Line Chart</h2>
+    <h2 style="text-align: center;">Your Mood History</h2>
     <canvas id="moodChart"></canvas>
     </div>
    
@@ -197,7 +197,7 @@ canvas {
             datasets: [{
               label: 'Mood Over Time',
               data: moodData,
-              borderColor: 'rgba(75, 192, 192, 1)',
+              borderColor: '#86469C',
               borderWidth: 2
             }]
           },
