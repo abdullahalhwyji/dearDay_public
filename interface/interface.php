@@ -473,7 +473,7 @@ $stmt->close();
                         </div>
 
                         <div class="review-text">
-                            <p>"Fantastic service! Everything was handled efficiently and professionally. The quality exceeded my expectations, and I am extremely satisfied. Will definitely use again!</p>
+                            <p>Fantastic service! Everything was handled efficiently and professionally. The quality exceeded my expectations, and I am extremely satisfied. Will definitely use again!</p>
                         </div>
 
                     </div>
