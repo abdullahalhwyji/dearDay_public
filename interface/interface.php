@@ -455,8 +455,7 @@ $stmt->close();
                         </div>
 
                         <div class="review-text">
-                            <p>Optio quod assumenda similique provident aliquid corrupti minima maxime tempore! Quas
-                                illo porro fuga consectetur repellat </p>
+                            <p>Great experience! The options provided were just what I needed. The product is reliable, and the customer support is excellent. Highly recommend! </p>
                         </div>
 
                     </div>
@@ -474,8 +473,7 @@ $stmt->close();
                         </div>
 
                         <div class="review-text">
-                            <p>Optio quod assumenda similique provident aliquid corrupti minima maxime tempore! Quas
-                                illo porro fuga consectetur repellat</p>
+                            <p>"Fantastic service! Everything was handled efficiently and professionally. The quality exceeded my expectations, and I am extremely satisfied. Will definitely use again!</p>
                         </div>
 
                     </div>
@@ -493,8 +491,7 @@ $stmt->close();
                         </div>
 
                         <div class="review-text">
-                            <p>Optio quod assumenda similique provident aliquid corrupti minima maxime tempore! Quas
-                                illo porro fuga consectetur repellat</p>
+                            <p>Absolutely delighted! The process was smooth, and the results were outstanding. The team went above and beyond to ensure my satisfaction. Highly recommend their services!</p>
                         </div>
 
                     </div>
