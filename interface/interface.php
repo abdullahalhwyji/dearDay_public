@@ -49,13 +49,13 @@ $stmt->close();
     <link rel='stylesheet'
         href='https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <link rel="stylesheet" href="../css/style_inter.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../pop/pop.css?v=<?php echo time(); ?>">
 
    
 </head>
 
 <body>
     <header>
-
         <div class="logo"><img src="../img/colored.png" alt=""></div>
 
         <nav class="navbar">
@@ -78,6 +78,17 @@ $stmt->close();
         </div>
 
     </header>
+
+       <!-- Pop-up container -->
+   <div class="popup-container" id="popup-container">
+    <!-- Pop-up box -->
+    <div class="popup" id="popup">
+        <p id="quote-text"></p>
+        <button id="close-button" class="close-icon">
+          <i class="fas fa-times"></i>
+      </button>
+    </div>
+</div>
 
     <!-- header section ended -->
 
@@ -377,6 +388,14 @@ $stmt->close();
             </div>
 
             <div class="inner-services">
+    <div class="service-icon">
+        <i class="fa-solid fa-comments"></i>
+    </div>
+    <h3>AI Chat Bot</h3>
+    <p>This AI-powered bot offers emotional support, mental health resources, guidance, and language translation to assist individuals struggling with mental health issues efficiently.</p>
+</div>
+
+            <div class="inner-services">
                 <div class="service-icon">
                     <i class="fa-solid fa-poll"></i>
                 </div>
@@ -394,13 +413,6 @@ $stmt->close();
 </div>
 
 
-<div class="inner-services">
-    <div class="service-icon">
-        <i class="fa-solid fa-brain"></i>
-    </div>
-    <h3>Personalized Insights and Tips</h3>
-    <p>Receive personalized insights and actionable tips based on journal entries and mood tracking data for improved mental well-being and health.</p>
-</div>
 
 
             <div class="inner-services">
@@ -554,6 +566,9 @@ $stmt->close();
     <!-- footer ended -->
 
     <script src="../js/interface.js"></script>
+
+    <script src="../pop/pop.js"></script>
+
 
 
 

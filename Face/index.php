@@ -92,21 +92,23 @@ header {
 
 /* Base button styles */
 button {
+  font-weight: bold;
   outline: none;
   width: 200px;
   height: 40px;
-  background-color: #7A884C;
+  background-color: #45a049;
   color: white;
   border: none;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  
 }
 
 /* Hover effect */
 button:hover {
-  background-color: #45a049;
+  background-color: #7A884C;
 }
 
 /* Focus effect */
@@ -119,12 +121,35 @@ button:focus {
   transform: scale(1.1); /* Scale up on hover */
 }
 
+#bb {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background-color: transparent; /* Green background */
+      color: white; /* White color */
+      padding: 20px; /* Increase padding */
+      border-radius: 50%; /* Rounded borders */
+      border: none; /* Remove borders */
+      cursor: pointer; /* Pointer/hand icon on hover */
+     
+    }
+
+    #bb i {
+      font-size: 30px; /* Increase icon size */
+    }
+
 
 
    </style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
+
+<button class="icon-button" id="bb" onclick="goBack()">
+    <i class="fas fa-arrow-left"></i>
+  </button>
   
   <div class="container">
     <video id="video" height="500" width="500" autoplay muted></video>
@@ -282,6 +307,11 @@ function interpolateAgePredictions(age) {
     predictedAges.reduce((total, a) => total + a) / predictedAges.length;
   return avgPredictedAge;
 }
+
+
+function goBack() {
+      window.history.back();
+    }
 
 </script>
 

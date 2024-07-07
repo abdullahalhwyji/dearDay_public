@@ -29,8 +29,33 @@
     <link rel="stylesheet" href="../css/style_journal.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+
+    <style>
+        #bb {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: transparent; /* Green background */
+  color: #86469C; /* White color */
+  padding: 20px; /* Increase padding */
+  border-radius: 50%; /* Rounded borders */
+  border: none; /* Remove borders */
+  cursor: pointer; /* Pointer/hand icon on hover */
+ 
+}
+
+#bb i {
+  font-size: 30px; /* Increase icon size */
+}
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+
+<button class="icon-button" id="bb" onclick="goBack()">
+    <i class="fas fa-arrow-left"></i>
+  </button>
+  
    
     <main class="main-container">
         <h1 class="title">My Journal</h1>
@@ -43,7 +68,7 @@
         </section>
         <section id="entries-section">
             <h2 class="entries-title">Entries <span class="date-updated">Last updated: <?= date('Y-m-d H:i:s'); ?></span></h2>
-            <button class="dashboard-button" onclick="location.href='dashboard.php'">Go to Dashboard</button>
+            <button class="dashboard-button" onclick="location.href='../dashboard/journal_history.php'">Go to Dashboard</button>
             <div class="entries-list">
                 <?php if (!empty($entries)): ?>
                     <?php foreach ($entries as $entry): ?>
@@ -60,5 +85,10 @@
         </section>
     </main>
     <footer></footer>
+    <script>
+    function goBack() {
+      window.history.back();
+    }
+</script>
 </body>
 </html>
