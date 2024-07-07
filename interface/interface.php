@@ -491,7 +491,7 @@ $stmt->close();
                         </div>
 
                         <div class="review-text">
-                            <p>Absolutely delighted! The process was smooth, and the results were outstanding. The team went above and beyond to ensure my satisfaction. Highly recommend their services!</p>
+                            <p>Absolutely delighted! The process was smooth, and the results were outstanding. The team went above and beyond to ensure my satisfaction.</p>
                         </div>
 
                     </div>

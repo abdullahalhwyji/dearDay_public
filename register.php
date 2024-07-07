@@ -153,18 +153,18 @@
                     ?>
 
                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                      <input type="submit" value="Register" name="register" class="btn btn-warning btn-lg text-light my-2 py-3" style="width:100% ; border-radius: 30px; font-weight:600; background-color: #86469C; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#522a60'" onmouseout="this.style.backgroundColor='#86469C'" />
+                      <input type="submit" value="Register" name="register" class="btn btn-warning btn-lg text-light my-2 py-3" style="width:100% ; border-radius: 30px; font-weight:600; background-color: #D35F94; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#E490D0'" onmouseout="this.style.backgroundColor='#D35F94'" />
                     </div>
 
                   </form>
                 </div>
                 <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 
-                  <img src="img/signuppic.png" class="img-fluid" alt="Sample image" height="300px" width="500px">
+                  <img src="img/moodTracker.png" class="img-fluid" alt="Sample image" height="300px" width="500px">
 
                 </div>
               </div>
-              <p align="center">Already have an account? <a href="index.php" style="font-weight:600;text-decoration:none; color : #86469C;">Login Here</a></p>
+              <p align="center">Already have an account? <a href="index.php" style="font-weight:600;text-decoration:none; color : #D35F94;">Login Here</a></p>
             </div>
           </div>
         </div>

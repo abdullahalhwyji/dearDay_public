@@ -16,7 +16,7 @@
     <div class="container py-5 h-100">
       <div class="row d-flex align-items-center justify-content-center h-100">
         <div class="col-md-8 col-lg-7 col-xl-6">
-          <img src="img/loginNew.png" class="img-fluid" alt="Phone image" height="300px" width="600px">
+          <img src="img/moodTracker1.png" class="img-fluid" alt="Phone image" height="300px" width="600px">
         </div>
         <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
           <form action="login.php" method="post">
@@ -42,10 +42,10 @@
 
             <!-- Submit button -->
             <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-              <input type="submit" value="Sign in" name="login" class="btn btn-warning btn-lg text-light my-2 py-3" style="width:100% ; border-radius: 30px; font-weight:600; background-color: #86469C; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#522a60'" onmouseout="this.style.backgroundColor='#86469C'" />
+              <input type="submit" value="Sign in" name="login" class="btn btn-warning btn-lg text-light my-2 py-3" style="width:100% ; border-radius: 30px; font-weight:600; background-color: #D35F94; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#E490D0'" onmouseout="this.style.backgroundColor='#D35F94'" />
             </div>
           </form><br>
-          <p align="center">I don't have any account <a href="register.php" style="font-weight:600;text-decoration:none; color : #86469C;">Register Here</a></p>
+          <p align="center">I don't have any account <a href="register.php" style="font-weight:600;text-decoration:none; color : #D35F94;">Register Here</a></p>
         </div>
       </div>
     </div>
