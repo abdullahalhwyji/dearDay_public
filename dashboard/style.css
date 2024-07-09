@@ -815,3 +815,15 @@ MEDIA QUERY PHONE
 
 
 }
+
+
+
+.express  {
+  display: grid;
+  width: 96%;
+  gap: 1.8rem;
+  grid-template-columns: 14rem auto;
+  margin: 0 auto;
+}
+
+

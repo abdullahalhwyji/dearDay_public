@@ -415,13 +415,13 @@ $conn->close();
 </div>
         <div class="div2">
     <div class="info">
-        <span class="text">Users with Good Mood Today</span>
+        <span class="text">Users with Good Mood</span>
         <span class="value"><?php echo $goodMoodCount; ?></span>
     </div>
 </div>
         <div class="div3">
     <div class="info">
-        <span class="text">Users with Bad Mood Today</span>
+        <span class="text">Users with Bad Mood</span>
         <span class="value"><?php echo $badMoodCount; ?></span>
     </div>
 </div>
