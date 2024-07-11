@@ -65,6 +65,7 @@ $stmt->close();
             <a href="#service">Services</a>
             <a href="#feedback">Reviews</a>
             <a  href="http://127.0.0.1:5000/">ChatBot</a>
+            <a  href="http://192.168.18.190:8501/">Music Library </a>
            
             <a href="../dashboard/index.php">Dashboard</a>
             <!-- DALLE= I add this in button for loging out in responsive mode -->
